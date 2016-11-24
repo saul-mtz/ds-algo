@@ -1,4 +1,4 @@
-package algorithms.tree;
+package common.tree;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;

@@ -1,4 +1,4 @@
-package algorithms.tree;
+package common.tree;
 
 import java.util.List;
 

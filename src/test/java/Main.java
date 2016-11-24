@@ -1,4 +1,4 @@
-import algorithms.tree.TrieTest;
+import common.tree.TrieTest;
 
 class Main {
 
