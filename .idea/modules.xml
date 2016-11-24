@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ds-algo.iml" filepath="$PROJECT_DIR$/.idea/modules/ds-algo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ds-algo_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ds-algo_main.iml" group="ds-algo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ds-algo_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ds-algo_test.iml" group="ds-algo" />
+    </modules>
+  </component>
+</project>
