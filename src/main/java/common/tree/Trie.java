@@ -124,24 +124,23 @@ public class Trie implements Tree {
     /**
      * Validate if the current node or its descendants contains the word given
      *
-     * @param str
+     * @param prefix
      * @return Trie
      */
-    public Trie search(String str) {
-        Trie node = this;
-        for (int i = 0; i < str.length(); i ++) {
-            if (node.prefix.equals(str)) {
-                return node;
-            }
+    public Trie search(String prefix) {
+        if (null == prefix || prefix.isEmpty()) {
+            return null;
+        }
 
-            Character c = str.charAt(i);
+        Trie node = this;
+        for (Character c : prefix.toCharArray()) {
             if (!node.children.containsKey(c)) {
                 return null;
             }
             node = node.children.get(c);
         }
 
-        return null == node || !node.prefix.equals(str) ? null : node;
+        return node;
     }
 
     /**
@@ -182,7 +181,7 @@ public class Trie implements Tree {
      */
     public List startsWith(String prefix) {
         Trie prefixNode = search(prefix);
-        return null == prefixNode ? new ArrayList<String>() : prefixNode.values();
+        return null == prefixNode ? null : prefixNode.values();
     }
 
     /**
