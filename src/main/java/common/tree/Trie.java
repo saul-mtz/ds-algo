@@ -2,6 +2,7 @@ package common.tree;
 
 import java.util.*;
 
+
 /**
  * Trie implementation using a TreeMap
  *
@@ -9,82 +10,139 @@ import java.util.*;
  */
 public class Trie implements Tree {
 
+    // store the children nodes,
+    // uses a TreeMap because the order is important
     private TreeMap<Character, Trie> children = new TreeMap<Character, Trie>();
+
+    // prefix for the current node
     private String prefix;
 
+    // size of the subtree, it has the value of all the subnodes from this one, included
+    private int size = 1;
+
+    // true when the current node represents a whole word
+    private boolean isWord = false;
+
+
+    /**
+     * Default constructor, used for the root node, there is not prefix to keep
+     */
     Trie() {
         this.prefix = "";
+        size = 0;
     }
 
-    Trie(String prefix) {
+    /**
+     * Creates a new node when all the descendants share the same prefix
+     * @param prefix
+     */
+    private Trie(String prefix) {
         this.prefix = prefix;
-
     }
 
-    public boolean containsCharacter(char c) {
-        return children.containsKey(c);
+    /**
+     * True when the current node is a leaf
+     * @return
+     */
+    public boolean isEmpty() {
+        return null == children || 0 == children.size();
     }
 
+    /**
+     * Size of all the words with the current prefix
+     * @return
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
+     * Add a word to the current node
+     *
+     * @param str
+     */
     public void add(String str) {
         Trie node = this;
         for (int i = 0; i < str.length(); i ++) {
             Character c = str.charAt(i);
-            if (!node.containsCharacter(c)) {
-                node.add(c);
+            if (!node.children.containsKey(c)) {
+                node.children.put(c, new Trie(node.prefix + c));
+                node = node.children.get(c);
+            } else {
+                node = node.children.get(c);
+                node.size ++;
             }
-            node = node.get(c);
         }
+
+        this.size ++;
+        node.isWord = true;
     }
 
 
-    private void add(char c) {
-        children.put(c, new Trie(prefix + c));
-    }
-
-    public Trie get(char c) {
-        return children.containsKey(c) ? children.get(c) : null;
-    }
-
+    /**
+     * Validate if the current node or its descendants contains the word given
+     *
+     * @param str
+     * @return null
+     */
     public boolean contains(String str) {
         Trie node = this;
         for (int i = 0; i < str.length(); i ++) {
             Character c = str.charAt(i);
-            if (!node.containsCharacter(c)) {
+            if (!node.children.containsKey(c)) {
                 return false;
             }
-            node = node.get(c);
+            node = node.children.get(c);
         }
 
         return true;
     }
 
-    public boolean isEmpty() {
-        return null == children || 0 == children.size();
+    /**
+     * Validate if the current node or its descendants contains the word given
+     *
+     * @param str
+     * @return Trie
+     */
+    public Trie search(String str) {
+        Trie node = this;
+        for (int i = 0; i < str.length(); i ++) {
+            if (node.prefix.equals(str)) {
+                return node;
+            }
+
+            Character c = str.charAt(i);
+            if (!node.children.containsKey(c)) {
+                return null;
+            }
+            node = node.children.get(c);
+        }
+
+        return null == node || !node.prefix.equals(str) ? null : node;
     }
 
-    public int size() {
-        return isEmpty() ? 0 : children.size();
-    }
-
-    public List preOrder() {
-        return null;
-    }
-
-    public List inOrder() {
+    /**
+     * Get the whole words of the current node
+     *
+     * @return
+     */
+    public List values() {
         List<String> elements = new ArrayList<String>();
         if (isEmpty()) {
             return elements;
         }
 
         Deque<Trie> deque = new ArrayDeque<Trie>();
-        Trie current = this;
-        deque.addAll(current.children.values());
+        Trie current;
+        deque.push(this);
 
         while (!deque.isEmpty()) {
             current = deque.pop();
-            if (current.isEmpty()) {
+            if (current.isWord) {
                 elements.add(current.prefix);
-            } else {;
+            }
+
+            if (!current.isEmpty()) {
                 for (Character keyChar: current.children.descendingKeySet()) {
                     deque.push(current.children.get(keyChar));
                 }
@@ -93,11 +151,17 @@ public class Trie implements Tree {
         return elements;
     }
 
-    public List postOrder() {
-        return null;
+    public List startsWith(String prefix) {
+        Trie prefixNode = search(prefix);
+        return null == prefixNode ? new ArrayList<String>() : prefixNode.values();
     }
 
+    /**
+     * The prefix is used as the string value
+     * @return
+     */
     public String toString() {
         return prefix;
     }
+
 }

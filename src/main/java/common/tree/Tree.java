@@ -14,16 +14,7 @@ public interface Tree {
     int size();
 
     // content
+    void add(String str);
     boolean contains(String str);
-
-    // traversal
-    // root -> left -> right
-    List preOrder();
-
-    // left -> root -> right
-    List inOrder();
-
-    // left -> right -> root
-    List postOrder();
-
+    List values();
 }

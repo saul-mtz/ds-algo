@@ -14,7 +14,6 @@
     <envs />
     <method>
       <option name="Make" enabled="false" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="ds-algo [clean]" run_configuration_type="GradleRunConfiguration" />
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="ds-algo [compileJava]" run_configuration_type="GradleRunConfiguration" />
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="ds-algo [compileTestJava]" run_configuration_type="GradleRunConfiguration" />
     </method>
