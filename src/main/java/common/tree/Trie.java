@@ -2,7 +2,6 @@ package common.tree;
 
 import java.util.*;
 
-
 /**
  * Trie implementation using a TreeMap
  *
@@ -12,7 +11,7 @@ public class Trie implements Tree {
 
     // store the children nodes,
     // uses a TreeMap because the order is important
-    private TreeMap<Character, Trie> children = new TreeMap<Character, Trie>();
+    private TreeMap<Character, Trie> children;
 
     // prefix for the current node
     private String prefix;
@@ -22,7 +21,6 @@ public class Trie implements Tree {
 
     // true when the current node represents a whole word
     private boolean isWord = false;
-
 
     /**
      * Default constructor, used for the root node, there is not prefix to keep
@@ -63,11 +61,9 @@ public class Trie implements Tree {
      */
     public void add(String str) {
         Trie node = this;
-        for (int i = 0; i < str.length(); i ++) {
-            Character c = str.charAt(i);
-            if (!node.children.containsKey(c)) {
-                node.children.put(c, new Trie(node.prefix + c));
-                node = node.children.get(c);
+        for (Character c : str.toCharArray()) {
+            if (!node.contains(c)) {
+                node = node.add(c);
             } else {
                 node = node.children.get(c);
                 node.size ++;
@@ -78,24 +74,51 @@ public class Trie implements Tree {
         node.isWord = true;
     }
 
+    /**
+     * Add a child to the current node
+     *
+     * @param c
+     * @return
+     */
+    private Trie add(Character c) {
+        if (null == children) {
+            children = new TreeMap<>();
+        }
+        Trie child = new Trie(prefix + c);
+        children.put(c, child);
+        return child;
+    }
+
 
     /**
      * Validate if the current node or its descendants contains the word given
      *
-     * @param str
+     * @param word
      * @return null
      */
-    public boolean contains(String str) {
+    public boolean contains(String word) {
+        if (null == word || word.isEmpty()) {
+            return false;
+        }
+
         Trie node = this;
-        for (int i = 0; i < str.length(); i ++) {
-            Character c = str.charAt(i);
-            if (!node.children.containsKey(c)) {
+        for (Character c : word.toCharArray()) {
+            if (!node.contains(c)) {
                 return false;
             }
             node = node.children.get(c);
         }
 
         return true;
+    }
+
+    /**
+     * Checks if the current node has a child with the key 'c'
+     * @param c
+     * @return
+     */
+    private boolean contains(Character c) {
+        return null != children && children.containsKey(c);
     }
 
     /**
@@ -127,12 +150,12 @@ public class Trie implements Tree {
      * @return
      */
     public List values() {
-        List<String> elements = new ArrayList<String>();
+        List<String> elements = new ArrayList<>();
         if (isEmpty()) {
             return elements;
         }
 
-        Deque<Trie> deque = new ArrayDeque<Trie>();
+        Deque<Trie> deque = new ArrayDeque<>();
         Trie current;
         deque.push(this);
 
@@ -151,6 +174,12 @@ public class Trie implements Tree {
         return elements;
     }
 
+    /**
+     * Get all the elements that starts with the prefix given
+     *
+     * @param prefix
+     * @return
+     */
     public List startsWith(String prefix) {
         Trie prefixNode = search(prefix);
         return null == prefixNode ? new ArrayList<String>() : prefixNode.values();
