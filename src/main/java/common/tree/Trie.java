@@ -1,6 +1,9 @@
 package common.tree;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Trie implementation using a TreeMap
@@ -14,9 +17,9 @@ public class Trie implements Tree {
     private TreeMap<Character, Trie> children;
 
     // prefix for the current node
-    private String prefix;
+    private final String prefix;
 
-    // size of the subtree, it has the value of all the subnodes from this one, included
+    // size of the subtree, it has the value of all the sub nodes from this one, included
     private int size = 1;
 
     // true when the current node represents a whole word
@@ -149,12 +152,13 @@ public class Trie implements Tree {
      * @return
      */
     public List values() {
-        List<String> elements = new ArrayList<>();
+
         if (isEmpty()) {
-            return elements;
+            return null;
         }
 
-        Deque<Trie> deque = new ArrayDeque<>();
+        ArrayList<String> elements = new ArrayList<>();
+        ArrayDeque<Trie> deque = new ArrayDeque<>();
         Trie current;
         deque.push(this);
 

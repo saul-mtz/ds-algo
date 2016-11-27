@@ -5,7 +5,7 @@ import java.util.Collections;
 
 class Interview {
 
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
         arrayList();
 
         printName("Stack");
