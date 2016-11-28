@@ -1,9 +1,10 @@
-import common.tree.TrieTest;
+import common.tree.*;
 
 class Main {
 
-	public static void main(String[] args) {
-        TrieTest test = new TrieTest();
+	public static void main2(String[] args) {
+        //TrieTest test = new TrieTest();
+        BinarySearchTest test = new BinarySearchTest();
         test.testDefaultBehavior();
 	}
 }

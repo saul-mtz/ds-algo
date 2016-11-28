@@ -1,5 +1,7 @@
 package common.tree;
 
+import org.junit.Test;
+
 import static junit.framework.TestCase.*;
 
 /**
@@ -10,6 +12,7 @@ public class TrieTest {
     /**
      * Basic expected behaviour
      */
+    @Test
     public void testDefaultBehavior() {
 
         Trie trie = new Trie();
