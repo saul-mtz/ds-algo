@@ -2,7 +2,6 @@ package common.tree;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public class BinarySearch {
 
-    private Node root;
+    protected Node root;
 
     public  Node add(Integer label) {
         if (null == root) {
@@ -71,7 +70,7 @@ public class BinarySearch {
 
     private  Node insert(Node node, Integer label) {
         if (null == node) {
-            node = new Node(label);
+            return new Node(label);
         } else if (label < node.data) {
             node.left = insert(node.left, label);
             node.setHeight(null); // height needs to be re-calculated
@@ -79,11 +78,10 @@ public class BinarySearch {
             node.right = insert(node.right, label);
             node.setHeight(null); // height needs to be re-calculated
         }
-
         return node;
     }
 
-    private boolean findAncestors(Node n, Integer value, List<Node> ancestors) {
+    protected boolean findAncestors(Node n, Integer value, List<Node> ancestors) {
         if (null == n.left && null == n.right && value != n.data) {
             return false;
         }
@@ -135,5 +133,9 @@ class Node {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    public String toString() {
+        return data.toString();
     }
 }

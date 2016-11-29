@@ -2,9 +2,8 @@ import common.tree.*;
 
 class Main {
 
-	public static void main2(String[] args) {
-        //TrieTest test = new TrieTest();
-        BinarySearchTest test = new BinarySearchTest();
+	public static void main(String[] args) {
+        AvlTreeTest test = new AvlTreeTest();
         test.testDefaultBehavior();
 	}
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import static junit.framework.TestCase.*;
 
 /**
- * Test for the Trie data Structure
+ * Test for the Binary Search Tree Data Structure
  */
 public class BinarySearchTest {
 
