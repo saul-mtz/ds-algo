@@ -1,33 +1,46 @@
 package common.tree;
 
-import java.util.ArrayList;
-
 /**
  * AVL Tree
  *
  * @link https://en.wikipedia.org/wiki/AVL_tree
  * @author saul.martinez
  */
-public class AvlTree extends BinarySearch {
+public class AvlTree extends BinarySearchTree {
 
-    public Node add(int val) {
+    private boolean indexEnabled = false;
 
-        Node newNode = super.add(val);
-        ArrayList<Node> ancestors = new ArrayList<>();
-        findAncestors(root, val, ancestors);
+    public TreeNode add(Integer value) {
 
-        for (Node ancestor : ancestors) {
-            // check the balance factor and do rotations if needed
-            int balanceFactor = balanceFactor(ancestor);
-            if (-2 == balanceFactor || 2 == balanceFactor) {
-                balance(ancestor, balanceFactor);
-            }
-
-            // re-calculate the height for the current node
-            // newNode.getHeight();
+        TreeNode newTreeNode = super.add(value);
+        balance(newTreeNode);
+        if (indexEnabled) {
+            updateIndexes(root, 1);
         }
+        root.setHeight(null);
+        return newTreeNode;
+    }
 
-        return newNode;
+    public TreeNode remove(Integer value) {
+        TreeNode find = find(value);
+        if (null != find) {
+            TreeNode parent = find.getParent();
+            TreeNode removed = super.remove(value);
+            if (null != parent) {
+                parent.setHeight(null);
+                balance(parent);
+            }
+            return removed;
+        }
+        return null;
+    }
+
+    /**
+     * When set to true an integer index is automatically asigned to each value of the tree
+     * Default value is false
+     */
+    public void enableIndex() {
+        indexEnabled = true;
     }
 
     public boolean isBalanced() {
@@ -35,24 +48,50 @@ public class AvlTree extends BinarySearch {
         return balanceFactor > -2 && balanceFactor < 2;
     }
 
-    private int balanceFactor(Node n) {
-        return (null == n.left ? -1 : n.left.getHeight()) - (null == n.right ? -1 : n.right.getHeight());
+    private void updateIndexes(TreeNode node, int offset) {
+        if (node.hasLeft()) {
+            updateIndexes(node.getLeft(), offset);
+            offset += node.getLeft().getSize();
+        }
+
+        node.setIndex(offset);
+
+        if (node.hasRight()) {
+            updateIndexes(node.getRight(), offset + 1);
+        }
     }
 
-    private void balance(Node n, int balanceFactor) {
+    private void balance(TreeNode node) {
+        for (TreeNode ancestor : node.getAncestors()) {
+            // check the balance factor and do rotations if needed
+            int balanceFactor = balanceFactor(ancestor);
+            if (-2 == balanceFactor || 2 == balanceFactor) {
+                balance(ancestor, balanceFactor);
+            }
+        }
+    }
+
+    private int balanceFactor(TreeNode n) {
+        if (null == root) {
+            return 0;
+        }
+        return (null == n.getLeft() ? -1 : n.getLeft().getHeight()) - (null == n.getRight() ? -1 : n.getRight().getHeight());
+    }
+
+    private void balance(TreeNode n, int balanceFactor) {
         if (-2 == balanceFactor) {
-            if (-1 == balanceFactor(n.right)) {
+            if (-1 == balanceFactor(n.getRight())) {
                 // right right case
                 rotateLeft(n);
             } else {
                 // right left case
-                rotateRight(n.right);
+                rotateRight(n.getRight());
                 rotateLeft(n);
             }
         } else {
-            if (-1 == balanceFactor(n.left)) {
+            if (-1 == balanceFactor(n.getLeft())) {
                 // left right case
-                rotateLeft(n.left);
+                rotateLeft(n.getLeft());
                 rotateRight(n);
             } else {
                 // left left case
@@ -61,27 +100,49 @@ public class AvlTree extends BinarySearch {
         }
     }
 
-    private void rotateLeft(Node n) {
-        Node newNode = new Node(n.data);
-        newNode.left = n.left;
-        newNode.right = n.right.left;
+    private void rotateLeft(TreeNode n) {
+        TreeNode nParent = n.getParent();
+        TreeNode nRight = n.getRight();
 
-        n.data = n.right.data;
-        n.right = n.right.right;
-        n.left = newNode;
+        n.setParent(n.getRight());
+        n.setRight(n.getRight().getLeft());
 
-        n.left.setHeight(null);
+        nRight.setParent(nParent);
+        nRight.setLeft(n);
+
+        if (null == nParent) {
+            root = nRight;
+        } else {
+            if (null != nParent.getLeft() && nParent.getLeft().equals(n)) {
+                nParent.setLeft(nRight);
+            } else {
+                nParent.setRight(nRight);
+            }
+        }
+        nRight.setHeight(null);
+        n.setHeight(null);
     }
 
-    private void rotateRight(Node n) {
-        Node newNode = new Node(n.data);
-        newNode.right = n.right;
-        newNode.left = n.left.right;
+    private void rotateRight(TreeNode n) {
+        TreeNode nParent = n.getParent();
+        TreeNode nLeft = n.getLeft();
 
-        n.data = n.left.data;
-        n.left = n.left.left;
-        n.right= newNode;
+        n.setParent(n.getLeft());
+        n.setLeft(n.getLeft().getRight());
 
-        n.right.setHeight(null);
+        nLeft.setParent(nParent);
+        nLeft.setRight(n);
+
+        if (null == nParent) {
+            root = nLeft;
+        } else {
+            if (null != nParent.getLeft() && nParent.getLeft().equals(n)) {
+                nParent.setLeft(nLeft);
+            } else {
+                nParent.setRight(nLeft);
+            }
+        }
+        nLeft.setHeight(null);
+        n.setHeight(null);
     }
 }

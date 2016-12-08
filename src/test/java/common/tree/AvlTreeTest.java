@@ -2,97 +2,204 @@ package common.tree;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import java.util.ArrayList;
+
+import static junit.framework.TestCase.*;
 
 /**
  * Test for the AVL Tree data Structure
  */
 public class AvlTreeTest {
 
-    /**
-     * Basic expected behaviour
-     */
     @Test
-    public void testDefaultBehavior() {
+    public void testLeftLeftCase() {
+
         AvlTree tree = new AvlTree();
         /*
-          1
-         / \
-        2   3
+        balanced using one single right rotation
+            3
+           /            2
+          2     -->    / \
+         /            1   3
+        1
          */
-        tree.add(1);
-        assertEquals(tree.root.data.toString(), "1");
-        assertEquals(tree.getHeight(), 0);
-        assertEquals(tree.toString(), "[1]");
-        tree.add(3);
-        assertEquals(tree.getHeight(), 1);
-        assertEquals(tree.toString(), "[1, 3]");
-        tree.add(2);
-        assertEquals(tree.getHeight(), 1);
+        assertAdd(tree, 3);
+        assertAdd(tree, 2);
+        assertAdd(tree, 1);
+
+        assertEquals(1, tree.getHeight());
         assertEquals(tree.toString(), "[1, 2, 3]");
-        tree.add(4);
-        tree.add(5);
-        tree.add(6);
-        tree.add(7);
+
+        // test the relationships
+        TreeNode root = tree.root;
+        TreeNode left = tree.root.getLeft();
+        TreeNode right = tree.root.getRight();
+        assertEquals(root.getValue(), Integer.valueOf(2));
+        assertEquals(left.getParent(), root);
+        assertEquals(right.getParent(), root);
+        assertNull(left.getLeft());
+        assertNull(left.getRight());
+        assertNull(right.getLeft());
+        assertNull(right.getRight());
+
+        assertAdd(tree, 0);
+        assertAdd(tree, -1);
+
+        assertEquals(2, tree.getHeight());
+        assertEquals(tree.root.getValue(), Integer.valueOf(2));
+        assertEquals(tree.toString(), "[-1, 0, 1, 2, 3]");
+    }
+
+    @Test
+    public void testRightRightCase() {
+
+        AvlTree tree = new AvlTree();
         /*
-             4
-           /   \
-          2     6
-         / \   / \
-        1   3 5   7
+        balanced using one single right rotation
+        1
+         \              2
+          2     -->    / \
+           \          1   3
+            3
          */
-        assertEquals(tree.root.data.toString(), "4");
-        assertEquals(tree.getHeight(), 2);
-        assertEquals(tree.toString(), "[1, 2, 3, 4, 5, 6, 7]");
+        assertAdd(tree, 1);
+        assertAdd(tree, 2);
+        assertAdd(tree, 3);
 
-        tree.add(8);
-        tree.add(9);
-        tree.add(10);
-        tree.add(11);
-        tree.add(12);
-        tree.add(13);
-        tree.add(14);
-        tree.add(15);
+        assertEquals(1, tree.getHeight());
+        assertEquals(tree.toString(), "[1, 2, 3]");
+        TreeNode root = tree.root;
+        TreeNode left = tree.root.getLeft();
+        TreeNode right = tree.root.getRight();
+        assertEquals(root.getValue(), Integer.valueOf(2));
+        assertEquals(left.getParent(), root);
+        assertEquals(right.getParent(), root);
+        assertNull(left.getLeft());
+        assertNull(left.getRight());
+        assertNull(right.getLeft());
+        assertNull(right.getRight());
+
+        assertAdd(tree, 4);
+        assertAdd(tree, 5);
+
+        assertEquals(2, tree.getHeight());
+        assertEquals(tree.root.getValue(), Integer.valueOf(2));
+        assertEquals(tree.toString(), "[1, 2, 3, 4, 5]");
+    }
+
+    @Test
+    public void testLeftRightCase() {
+
+        AvlTree tree = new AvlTree();
         /*
-                    8
-                  /   \
-                 /     \
-                /       \
-               /         \
-              /           \
-             4            12
-           /   \       /      \
-          2     6     10      14
-         / \   / \   /  \    /  \
-        1   3 5   7 9    11 13  15
+        balanced using one single right rotation
+          3
+         /            2
+        1     -->    / \
+         \          1   3
+          2
          */
-        assertEquals(tree.root.data.toString(), "8");
-        assertEquals(tree.getHeight(), 3);
-        assertEquals(tree.toString(), "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]");
+        assertAdd(tree, 3);
+        assertAdd(tree, 1);
+        assertAdd(tree, 2);
 
-        tree = new AvlTree();
-        tree.add(5);
-        tree.add(3);
-        tree.add(4);
-        tree.add(15);
-        tree.add(14);
-        tree.add(13);
-        tree.add(12);
-        tree.add(11);
-        tree.add(10);
-        tree.add(9);
-        tree.add(8);
-        tree.add(7);
-        tree.add(6);
-        tree.add(2);
-        tree.add(1);
+        assertEquals(1, tree.getHeight());
+        assertEquals(tree.root.getValue(), Integer.valueOf(2));
+        assertEquals(tree.toString(), "[1, 2, 3]");
+    }
 
-        // @TODO: The optimal solution must be the same result as the previous test
-        //assertEquals(tree.getHeight(), 3);
-        //assertEquals(tree.root.data.toString(), "8");
+    @Test
+    public void testRightLeftCase() {
+
+        AvlTree tree = new AvlTree();
+        /*
+        balanced using one single right rotation
+        1
+         \            2
+          3   -->    / \
+         /          1   3
+        2
+         */
+        assertAdd(tree, 1);
+        assertAdd(tree, 3);
+        assertAdd(tree, 2);
+
+        assertEquals(1, tree.getHeight());
+        assertEquals(tree.root.getValue(), Integer.valueOf(2));
+        assertEquals(tree.toString(), "[1, 2, 3]");
+    }
+
+    @Test
+    public void testBigTree() {
+        AvlTree tree = new AvlTree();
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i < 1024; i ++) {
+            list.add(i);
+            assertAdd(tree, i);
+            assertEquals(tree.toString(), list.toString());
+        }
+
+        assertEquals(tree.getHeight(), 9);
+        for (int i = 1023; i >= 1; i --) {
+            list.remove(Integer.valueOf(i));
+            assertRemove(tree, i);
+            assertEquals(tree.toString(), list.toString());
+        }
+        assertNull(tree.root);
+        assertEquals(tree.getHeight(), 0);
+
+    }
+
+    @Test
+    public void keyEnabled() {
+        AvlTree tree = new AvlTree();
+        ArrayList<Integer> values = new ArrayList<>();
+        ArrayList<Integer> indexes = new ArrayList<>();
+        tree.enableIndex();
+        int limit = 10;
+
+        for (int i = 1; i < Math.pow(2, limit); i ++) {
+            int expectedHeight = (int) (Math.log(i)/Math.log(2));
+            assertAddWithKeyEnabled(tree, 2);
+            values.add(2);
+            indexes.add(i);
+            assertEquals(expectedHeight, tree.getHeight());
+            assertEquals(values.toString(), tree.toString());
+            assertEquals(indexes.toString(), tree.root.inOrderIndex().toString());
+        }
+        int test = (int) Math.pow(2, limit) - 1;
+        assertEquals(tree.root.getSize(), test);
+    }
+
+    private void assertAdd(AvlTree tree, Integer n) {
+        TreeNode added = tree.add(n);
+        assertNotNull(added);
+        assertEquals(added.getValue(), n);
+
+        assertNotNull(tree);
+        TreeNode find = tree.find(n);
+        assertEquals(added, find);
         assertTrue(tree.isBalanced());
-        assertEquals(tree.toString(), "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]");
+    }
+
+    private void assertRemove(AvlTree tree, Integer n) {
+        TreeNode removed = tree.remove(n);
+        assertNotNull(removed);
+        assertNull(removed.getParent());
+        assertNull(removed.getLeft());
+        assertNull(removed.getRight());
+        assertEquals(removed.getValue(), n);
+        assertTrue(tree.isBalanced());
+    }
+
+    private void assertAddWithKeyEnabled(AvlTree tree, Integer n) {
+        TreeNode added = tree.add(n);
+        assertNotNull(added);
+        assertEquals(added.getValue(), n);
+
+        assertNotNull(tree);
+        assertNotNull(tree.find(n));
+        assertTrue(tree.isBalanced());
     }
 
 }
