@@ -8,26 +8,19 @@ package common.tree;
  */
 public class AvlTree extends BinarySearchTree {
 
-    private boolean indexEnabled = false;
-
     public TreeNode add(Integer value) {
 
         TreeNode newTreeNode = super.add(value);
         balance(newTreeNode);
-        if (indexEnabled) {
-            updateIndexes(root, 1);
-        }
-        root.setHeight(null);
         return newTreeNode;
     }
 
-    public TreeNode remove(Integer value) {
-        TreeNode find = find(value);
+    public Integer remove(Integer value) {
+        TreeNode find = root.find(value, true, 0);
         if (null != find) {
             TreeNode parent = find.getParent();
-            TreeNode removed = super.remove(value);
+            Integer removed = super.remove(value);
             if (null != parent) {
-                parent.setHeight(null);
                 balance(parent);
             }
             return removed;
@@ -35,52 +28,25 @@ public class AvlTree extends BinarySearchTree {
         return null;
     }
 
-    /**
-     * When set to true an integer index is automatically asigned to each value of the tree
-     * Default value is false
-     */
-    public void enableIndex() {
-        indexEnabled = true;
-    }
-
     public boolean isBalanced() {
-        int balanceFactor = balanceFactor(root);
-        return balanceFactor > -2 && balanceFactor < 2;
+        return null == root || root.getBalanceFactor() > -2 && root.getBalanceFactor() < 2;
     }
 
-    private void updateIndexes(TreeNode node, int offset) {
-        if (node.hasLeft()) {
-            updateIndexes(node.getLeft(), offset);
-            offset += node.getLeft().getSize();
-        }
-
-        node.setIndex(offset);
-
-        if (node.hasRight()) {
-            updateIndexes(node.getRight(), offset + 1);
-        }
-    }
-
-    private void balance(TreeNode node) {
-        for (TreeNode ancestor : node.getAncestors()) {
+    public void balance(TreeNode node) {
+        while (null != node) {
             // check the balance factor and do rotations if needed
-            int balanceFactor = balanceFactor(ancestor);
-            if (-2 == balanceFactor || 2 == balanceFactor) {
-                balance(ancestor, balanceFactor);
+            int balanceFactor = node.getBalanceFactor();
+            if (balanceFactor < -1 || balanceFactor > 1) {
+                balance(node, balanceFactor);
             }
-        }
-    }
 
-    private int balanceFactor(TreeNode n) {
-        if (null == root) {
-            return 0;
+            node = node.getParent();
         }
-        return (null == n.getLeft() ? -1 : n.getLeft().getHeight()) - (null == n.getRight() ? -1 : n.getRight().getHeight());
     }
 
     private void balance(TreeNode n, int balanceFactor) {
-        if (-2 == balanceFactor) {
-            if (-1 == balanceFactor(n.getRight())) {
+        if (balanceFactor < -1) {
+            if (n.getRight().getBalanceFactor() < 0) {
                 // right right case
                 rotateLeft(n);
             } else {
@@ -89,7 +55,7 @@ public class AvlTree extends BinarySearchTree {
                 rotateLeft(n);
             }
         } else {
-            if (-1 == balanceFactor(n.getLeft())) {
+            if (n.getLeft().getBalanceFactor() < 0) {
                 // left right case
                 rotateLeft(n.getLeft());
                 rotateRight(n);
@@ -100,49 +66,59 @@ public class AvlTree extends BinarySearchTree {
         }
     }
 
-    private void rotateLeft(TreeNode n) {
-        TreeNode nParent = n.getParent();
-        TreeNode nRight = n.getRight();
+    /**
+     * Left rotation taken from https://en.wikipedia.org/wiki/Tree_rotation#Illustration
+     * @param node
+     */
+    private void rotateLeft(TreeNode node) {
+        TreeNode pivot = node.getRight();
+        TreeNode parent = node.getParent();
+        boolean isLeft = node.isLeft;
 
-        n.setParent(n.getRight());
-        n.setRight(n.getRight().getLeft());
-
-        nRight.setParent(nParent);
-        nRight.setLeft(n);
-
-        if (null == nParent) {
-            root = nRight;
+        if (null == pivot.getLeft()) {
+            node.setRight(null);
         } else {
-            if (null != nParent.getLeft() && nParent.getLeft().equals(n)) {
-                nParent.setLeft(nRight);
+            node.setRight(pivot.getLeft().remove(true));
+        }
+        pivot.setLeft(node);
+
+        if (null == parent) {
+            root = pivot;
+            pivot.setParent(null);
+        } else {
+            if (isLeft) {
+                parent.setLeft(pivot);
             } else {
-                nParent.setRight(nRight);
+                parent.setRight(pivot);
             }
         }
-        nRight.setHeight(null);
-        n.setHeight(null);
     }
 
-    private void rotateRight(TreeNode n) {
-        TreeNode nParent = n.getParent();
-        TreeNode nLeft = n.getLeft();
+    /**
+     * Right node rotation, taken from https://en.wikipedia.org/wiki/Tree_rotation#Illustration
+     * @param node
+     */
+    private void rotateRight(TreeNode node) {
+        TreeNode pivot = node.getLeft();
+        TreeNode parent = node.getParent();
+        boolean isLeft = node.isLeft;
 
-        n.setParent(n.getLeft());
-        n.setLeft(n.getLeft().getRight());
-
-        nLeft.setParent(nParent);
-        nLeft.setRight(n);
-
-        if (null == nParent) {
-            root = nLeft;
+        if (null == pivot.getRight()) {
+            node.setLeft(null);
         } else {
-            if (null != nParent.getLeft() && nParent.getLeft().equals(n)) {
-                nParent.setLeft(nLeft);
+            node.setLeft(pivot.getRight().remove(true));
+        }
+        pivot.setRight(node);
+
+        if (null == parent) {
+            root = pivot;
+            pivot.setParent(null);
+        } else {
+            if (isLeft) {
+                parent.setLeft(pivot);
             } else {
-                nParent.setRight(nLeft);
+                parent.setRight(pivot);
             }
         }
-        nLeft.setHeight(null);
-        n.setHeight(null);
     }
 }
