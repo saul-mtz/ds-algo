@@ -10,7 +10,7 @@ import java.util.TreeMap;
  *
  * @author saul.mtz.v
  */
-public class Trie implements Tree {
+public class Trie {
 
     // store the children nodes,
     // uses a TreeMap because the order is important
@@ -94,7 +94,7 @@ public class Trie implements Tree {
 
 
     /**
-     * Validate if the current node or its descendants contains the word given
+     * Validate if the current node or its descendants indexOf the word given
      *
      * @param word
      * @return null
@@ -125,7 +125,7 @@ public class Trie implements Tree {
     }
 
     /**
-     * Validate if the current node or its descendants contains the word given
+     * Validate if the current node or its descendants indexOf the word given
      *
      * @param prefix
      * @return Trie

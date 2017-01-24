@@ -54,8 +54,14 @@ public class TreeNode {
             getLeft().setParent(null);
         }
 
+        int index = null == getLeft() ? -1 : getLeft().getIndex();
         this.left = left;
+
+        if (-1 != index && null != getLeft()) {
+            getLeft().setIndex(index);
+        }
         int updatedHeight;
+
         if (null != left) {
             left.setParent(this);
             isLeaf = false;
@@ -84,8 +90,13 @@ public class TreeNode {
             getRight().setParent(null);
         }
 
+        int index = null == getRight() ? -1 : getRight().getIndex();
         this.right = right;
+        if (-1 != index && null != getRight()) {
+            getRight().setIndex(index);
+        }
         int updatedHeight;
+
         if (null != right) {
             right.setParent(this);
             isLeaf = false;
@@ -115,6 +126,10 @@ public class TreeNode {
 
     public int getIndex() {
         return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public int getSize() {
@@ -289,15 +304,15 @@ public class TreeNode {
                 }
             } else {
                 // case 3: Nodes with two children
-                if (null != this.getRight()) {
-                    toReplace = this.getRight().findMin();
-                } else {
-                    toReplace = this.getLeft().findMax();
-                }
-
+                toReplace = this.getRight().findMin();
                 swapWith(toReplace);
                 this.remove(removeChildren);
             }
+        }
+
+        if (null != parent) {
+            parent.indexMin = parent.findMin().getIndex();
+            parent.indexMax = parent.findMax().getIndex();
         }
 
         return null != toReplace && toReplace.isRoot ? toReplace : this;
@@ -342,6 +357,11 @@ public class TreeNode {
             } else {
                 node.setParent(null);
             }
+
+            int index = node.getIndex();
+            node.setIndex(this.getIndex());
+            this.setIndex(index);
+
             return;
         }
 

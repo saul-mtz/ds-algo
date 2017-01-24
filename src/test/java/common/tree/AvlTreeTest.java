@@ -28,24 +28,29 @@ public class AvlTreeTest extends BinarySearchTreeTest {
         BinarySearchTree tree = getLeftLeftTree();
         tree.remove(1);
         assertEquals(tree.toString(), "[2, 3]");
-        assertEquals(tree.root.indexMin, 1);
-        assertEquals(tree.root.indexMax, 2);
+        assertEquals(tree.root.indexMin, 2);
+        assertEquals(tree.root.indexMax, 3);
 
         tree = getLeftLeftTree();
         tree.remove(2);
         assertEquals(tree.toString(), "[1, 3]");
+        assertEquals(tree.root.getIndex(), 2);
         assertEquals(tree.root.indexMin, 1);
         assertEquals(tree.root.indexMax, 2);
 
         tree = getLeftLeftTree();
         tree.remove(3);
         assertEquals(tree.toString(), "[1, 2]");
+        assertEquals(tree.root.getIndex(), 2);
         assertEquals(tree.root.indexMin, 1);
         assertEquals(tree.root.indexMax, 2);
 
         tree = getLeftLeftTree();
         tree.removeNode(tree.find(1), false);
         assertEquals(tree.toString(), "[2, 3]");
+        assertEquals(tree.root.getIndex(), 2);
+        assertEquals(tree.root.indexMin, 2);
+        assertEquals(tree.root.indexMax, 3);
 
         tree = getLeftLeftTree();
         tree.removeNode(tree.find(2), false);

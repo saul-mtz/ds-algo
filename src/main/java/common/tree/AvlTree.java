@@ -80,8 +80,8 @@ public class AvlTree extends BinarySearchTree {
         } else {
             node.setRight(pivot.getLeft().remove(true));
         }
-        pivot.setLeft(node);
 
+        pivot.setLeft(node);
         if (null == parent) {
             root = pivot;
             pivot.setParent(null);
@@ -92,6 +92,17 @@ public class AvlTree extends BinarySearchTree {
                 parent.setRight(pivot);
             }
         }
+
+        if (null != parent) {
+            parent.indexMin = parent.findMin().getIndex();
+            parent.indexMax = parent.findMax().getIndex();
+        }
+
+        pivot.indexMin = pivot.findMin().getIndex();
+        pivot.indexMax = pivot.findMax().getIndex();
+
+        node.indexMin = node.findMin().getIndex();
+        node.indexMax = node.findMax().getIndex();
     }
 
     /**
@@ -108,6 +119,7 @@ public class AvlTree extends BinarySearchTree {
         } else {
             node.setLeft(pivot.getRight().remove(true));
         }
+
         pivot.setRight(node);
 
         if (null == parent) {
