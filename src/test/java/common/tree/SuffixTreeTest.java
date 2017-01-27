@@ -1,13 +1,20 @@
 package common.tree;
 
+import common.SuffixDataStructure;
 import org.junit.Assert;
 import org.junit.Test;
 
 
 /**
- * Test for the Suffix tree data Structure
+ * Test for the Suffix ds data Structure
  */
 public class SuffixTreeTest {
+
+    protected SuffixDataStructure ds;
+
+    protected SuffixDataStructure getDataStructure(String word) {
+        return new SuffixTree(word);
+    }
 
     /**
      * Basic expected behaviour
@@ -15,28 +22,28 @@ public class SuffixTreeTest {
     @Test
     public void testDefaultBehavior() {
 
-        SuffixTree tree = new SuffixTree("BANANA");
-        System.out.println("Prefixes");
+        ds = getDataStructure("BANANA");
+        Assert.assertEquals(ds.length(), 6);
 
-        Assert.assertTrue(tree.find("NA"));
-        Assert.assertEquals(tree.indexOf("NA"), 2);
-        Assert.assertEquals(tree.lastIndexOf("NA"), 4);
-        Assert.assertEquals(tree.substringCount("NA"), 2);
+        Assert.assertTrue(ds.find("NA"));
+        Assert.assertEquals(ds.indexOf("NA"), 2);
+        Assert.assertEquals(ds.lastIndexOf("NA"), 4);
+        Assert.assertEquals(ds.substringCount("NA"), 2);
 
-        Assert.assertFalse(tree.find("SA"));
-        Assert.assertEquals(tree.indexOf("SA"), -1);
-        Assert.assertEquals(tree.lastIndexOf("SA"), -1);
-        Assert.assertEquals(tree.substringCount("SA"), 0);
+        Assert.assertFalse(ds.find("SA"));
+        Assert.assertEquals(ds.indexOf("SA"), -1);
+        Assert.assertEquals(ds.lastIndexOf("SA"), -1);
+        Assert.assertEquals(ds.substringCount("SA"), 0);
 
-        Assert.assertTrue(tree.find("A"));
-        Assert.assertEquals(tree.indexOf("A"), 1);
-        Assert.assertEquals(tree.lastIndexOf("A"), 5);
-        Assert.assertEquals(tree.substringCount("A"), 3);
+        Assert.assertTrue(ds.find("A"));
+        Assert.assertEquals(ds.indexOf("A"), 1);
+        Assert.assertEquals(ds.lastIndexOf("A"), 5);
+        Assert.assertEquals(ds.substringCount("A"), 3);
 
-        Assert.assertTrue(tree.find("B"));
-        Assert.assertEquals(tree.indexOf("B"), 0);
-        Assert.assertEquals(tree.lastIndexOf("B"), 0);
-        Assert.assertEquals(tree.substringCount("B"), 1);
+        Assert.assertTrue(ds.find("B"));
+        Assert.assertEquals(ds.indexOf("B"), 0);
+        Assert.assertEquals(ds.lastIndexOf("B"), 0);
+        Assert.assertEquals(ds.substringCount("B"), 1);
     }
 
 }

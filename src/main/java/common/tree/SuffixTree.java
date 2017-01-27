@@ -1,12 +1,14 @@
 package common.tree;
 
+import common.SuffixDataStructure;
+
 import java.util.*;
 
 /**
  * Implementation based on:
  * @link https://en.wikipedia.org/wiki/Suffix_tree
  */
-public class SuffixTree {
+public class SuffixTree implements SuffixDataStructure {
     private Trie trie;
     private String src;
 
@@ -39,6 +41,12 @@ public class SuffixTree {
     public int substringCount(String word) {
         TreeSet<Integer> positions = trie.getPositions(word);
         return null == positions ? 0 : positions.size();
+    }
+
+
+    @Override
+    public int length() {
+        return src.length();
     }
 
     public String toString() {
