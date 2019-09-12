@@ -1,9 +1,12 @@
-import common.DisjointSetTest;
+import common.tree.SuffixTreeGraphviz;
 import common.tree.SuffixTreeTest;
+
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        DisjointSetTest test = new DisjointSetTest();
-        test.testDefaultBehavior();
+
+//        new SuffixTreeGraphviz("abcdefabxybcdmnabcdex");
+        new SuffixTreeTest().testDefaultBehavior();
     }
 }

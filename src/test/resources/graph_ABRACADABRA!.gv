@@ -1,0 +1,485 @@
+digraph suffixTree {
+  labelloc="t";
+  label="Suffix Tree for \"ABRACADABRA!$\"";
+  rankdir=LR;
+  size="8,5"
+  node [margin=0 fontcolor=blue fontsize=1 width=0.1 shape=circle style=filled];
+
+  subgraph cluster_1 {
+    label="Step 1: S[0]=A, AP=(root,'\\0x',0), remainder=0"
+
+    root1_0 -> node260131_0 [label = "[0,0] A" color=blue];
+
+    node260131_0 [ shape=point ]
+    root1_0 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_2 {
+    label="Step 2: S[1]=B, AP=(root,'\\0x',0), remainder=0"
+
+    root2_1 -> node260132_1 [label = "[0,1] AB"];
+    root2_1 -> node251132_1 [label = "[1,1] B" color=blue];
+
+    node260132_1 [ shape=point ]
+    root2_1 [ width=0.15  fillcolor=red ]
+    node251132_1 [ shape=point ]
+  }
+
+  subgraph cluster_3 {
+    label="Step 3: S[2]=R, AP=(root,'\\0x',0), remainder=0"
+
+    root3_2 -> node260133_2 [label = "[0,2] ABR"];
+    root3_2 -> node251133_2 [label = "[1,2] BR"];
+    root3_2 -> node242133_2 [label = "[2,2] R" color=blue];
+
+    node260133_2 [ shape=point ]
+    root3_2 [ width=0.15  fillcolor=red ]
+    node251133_2 [ shape=point ]
+    node242133_2 [ shape=point ]
+  }
+
+  subgraph cluster_4 {
+    label="Step 4: S[3]=A, AP=(root,'A',1), remainder=1"
+
+    root4_3 -> node260134_3 [label = "[0,3] ABRA" color=red];
+    root4_3 -> node251134_3 [label = "[1,3] BRA"];
+    root4_3 -> node242134_3 [label = "[2,3] RA"];
+
+    node260134_3 [ shape=point ]
+    root4_3 [ width=0.15  fillcolor=red ]
+    node251134_3 [ shape=point ]
+    node242134_3 [ shape=point ]
+  }
+
+  subgraph cluster_5 {
+    label="Step 5: S[4]=C, AP=(root,'A',1), remainder=1"
+
+    root5_4 -> node1005_4 [label = "[0,0] A" color=blue];
+    root5_4 -> node251135_4 [label = "[1,4] BRAC"];
+    root5_4 -> node242135_4 [label = "[2,4] RAC"];
+    node1005_4 -> node131135_4 [label = "[1,4] BRAC" color=blue];
+    node1005_4 -> node104135_4 [label = "[4,4] C" color=blue];
+
+    node104135_4 [ shape=point ]
+    root5_4 [ width=0.15  fillcolor=red ]
+    node251135_4 [ shape=point ]
+    node131135_4 [ shape=point ]
+    node242135_4 [ shape=point ]
+  }
+
+  subgraph cluster_5 {
+    label="Step 5: S[4]=C, AP=(root,'C',0), remainder=0"
+
+    root5_5 -> node1005_5 [label = "[0,0] A"];
+    root5_5 -> node251135_5 [label = "[1,4] BRAC"];
+    root5_5 -> node224135_5 [label = "[4,4] C" color=blue];
+    root5_5 -> node242135_5 [label = "[2,4] RAC"];
+    node1005_5 -> node131135_5 [label = "[1,4] BRAC"];
+    node1005_5 -> node104135_5 [label = "[4,4] C"];
+
+    node104135_5 [ shape=point ]
+    root5_5 [ width=0.15  fillcolor=red ]
+    node251135_5 [ shape=point ]
+    node131135_5 [ shape=point ]
+    node224135_5 [ shape=point ]
+    node242135_5 [ shape=point ]
+  }
+
+  subgraph cluster_6 {
+    label="Step 6: S[5]=A, AP=(root,'A',1), remainder=1"
+
+    root6_6 -> node1006_6 [label = "[0,0] A" color=red];
+    root6_6 -> node251136_6 [label = "[1,5] BRACA"];
+    root6_6 -> node224136_6 [label = "[4,5] CA"];
+    root6_6 -> node242136_6 [label = "[2,5] RACA"];
+    node1006_6 -> node131136_6 [label = "[1,5] BRACA"];
+    node1006_6 -> node104136_6 [label = "[4,5] CA"];
+
+    node104136_6 [ shape=point ]
+    root6_6 [ width=0.15  fillcolor=red ]
+    node251136_6 [ shape=point ]
+    node131136_6 [ shape=point ]
+    node224136_6 [ shape=point ]
+    node242136_6 [ shape=point ]
+  }
+
+  subgraph cluster_6 {
+    label="Step 6: S[5]=A, AP=(node100,'\\0x',0), remainder=1"
+
+    root6_7 -> node1006_7 [label = "[0,0] A"];
+    root6_7 -> node251136_7 [label = "[1,5] BRACA"];
+    root6_7 -> node224136_7 [label = "[4,5] CA"];
+    root6_7 -> node242136_7 [label = "[2,5] RACA"];
+    node1006_7 -> node131136_7 [label = "[1,5] BRACA"];
+    node1006_7 -> node104136_7 [label = "[4,5] CA"];
+
+    node104136_7 [ shape=point ]
+    node1006_7 [width=0.15 fillcolor=red]
+    root6_7 [ width=0.15 ]
+    node251136_7 [ shape=point ]
+    node131136_7 [ shape=point ]
+    node224136_7 [ shape=point ]
+    node242136_7 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=D, AP=(node100,'\\0x',0), remainder=1"
+
+    root7_8 -> node1007_8 [label = "[0,0] A"];
+    root7_8 -> node251137_8 [label = "[1,6] BRACAD"];
+    root7_8 -> node224137_8 [label = "[4,6] CAD"];
+    root7_8 -> node242137_8 [label = "[2,6] RACAD"];
+    node1007_8 -> node131137_8 [label = "[1,6] BRACAD"];
+    node1007_8 -> node104137_8 [label = "[4,6] CAD"];
+    node1007_8 -> node86137_8 [label = "[6,6] D" color=blue];
+
+    node86137_8 [ shape=point ]
+    node104137_8 [ shape=point ]
+    node1007_8 [width=0.15 fillcolor=red]
+    root7_8 [ width=0.15 ]
+    node251137_8 [ shape=point ]
+    node131137_8 [ shape=point ]
+    node224137_8 [ shape=point ]
+    node242137_8 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=D, AP=(root,'\\0x',0), remainder=0"
+
+    root7_9 -> node1007_9 [label = "[0,0] A"];
+    root7_9 -> node251137_9 [label = "[1,6] BRACAD"];
+    root7_9 -> node224137_9 [label = "[4,6] CAD"];
+    root7_9 -> node206137_9 [label = "[6,6] D" color=blue];
+    root7_9 -> node242137_9 [label = "[2,6] RACAD"];
+    node1007_9 -> node131137_9 [label = "[1,6] BRACAD"];
+    node1007_9 -> node104137_9 [label = "[4,6] CAD"];
+    node1007_9 -> node86137_9 [label = "[6,6] D"];
+
+    node86137_9 [ shape=point ]
+    node104137_9 [ shape=point ]
+    root7_9 [ width=0.15  fillcolor=red ]
+    node251137_9 [ shape=point ]
+    node206137_9 [ shape=point ]
+    node131137_9 [ shape=point ]
+    node224137_9 [ shape=point ]
+    node242137_9 [ shape=point ]
+  }
+
+  subgraph cluster_8 {
+    label="Step 8: S[7]=A, AP=(root,'A',1), remainder=1"
+
+    root8_10 -> node1008_10 [label = "[0,0] A" color=red];
+    root8_10 -> node251138_10 [label = "[1,7] BRACADA"];
+    root8_10 -> node224138_10 [label = "[4,7] CADA"];
+    root8_10 -> node206138_10 [label = "[6,7] DA"];
+    root8_10 -> node242138_10 [label = "[2,7] RACADA"];
+    node1008_10 -> node131138_10 [label = "[1,7] BRACADA"];
+    node1008_10 -> node104138_10 [label = "[4,7] CADA"];
+    node1008_10 -> node86138_10 [label = "[6,7] DA"];
+
+    node86138_10 [ shape=point ]
+    node104138_10 [ shape=point ]
+    root8_10 [ width=0.15  fillcolor=red ]
+    node251138_10 [ shape=point ]
+    node206138_10 [ shape=point ]
+    node131138_10 [ shape=point ]
+    node224138_10 [ shape=point ]
+    node242138_10 [ shape=point ]
+  }
+
+  subgraph cluster_8 {
+    label="Step 8: S[7]=A, AP=(node100,'\\0x',0), remainder=1"
+
+    root8_11 -> node1008_11 [label = "[0,0] A"];
+    root8_11 -> node251138_11 [label = "[1,7] BRACADA"];
+    root8_11 -> node224138_11 [label = "[4,7] CADA"];
+    root8_11 -> node206138_11 [label = "[6,7] DA"];
+    root8_11 -> node242138_11 [label = "[2,7] RACADA"];
+    node1008_11 -> node131138_11 [label = "[1,7] BRACADA"];
+    node1008_11 -> node104138_11 [label = "[4,7] CADA"];
+    node1008_11 -> node86138_11 [label = "[6,7] DA"];
+
+    node86138_11 [ shape=point ]
+    node104138_11 [ shape=point ]
+    node1008_11 [width=0.15 fillcolor=red]
+    root8_11 [ width=0.15 ]
+    node251138_11 [ shape=point ]
+    node206138_11 [ shape=point ]
+    node131138_11 [ shape=point ]
+    node224138_11 [ shape=point ]
+    node242138_11 [ shape=point ]
+  }
+
+  subgraph cluster_9 {
+    label="Step 9: S[8]=B, AP=(node100,'B',1), remainder=2"
+
+    root9_12 -> node1009_12 [label = "[0,0] A"];
+    root9_12 -> node251139_12 [label = "[1,8] BRACADAB"];
+    root9_12 -> node224139_12 [label = "[4,8] CADAB"];
+    root9_12 -> node206139_12 [label = "[6,8] DAB"];
+    root9_12 -> node242139_12 [label = "[2,8] RACADAB"];
+    node1009_12 -> node131139_12 [label = "[1,8] BRACADAB" color=red];
+    node1009_12 -> node104139_12 [label = "[4,8] CADAB"];
+    node1009_12 -> node86139_12 [label = "[6,8] DAB"];
+
+    node86139_12 [ shape=point ]
+    node104139_12 [ shape=point ]
+    node1009_12 [width=0.15 fillcolor=red]
+    root9_12 [ width=0.15 ]
+    node251139_12 [ shape=point ]
+    node206139_12 [ shape=point ]
+    node131139_12 [ shape=point ]
+    node224139_12 [ shape=point ]
+    node242139_12 [ shape=point ]
+  }
+
+  subgraph cluster_10 {
+    label="Step 10: S[9]=R, AP=(node100,'B',2), remainder=3"
+
+    root10_13 -> node10010_13 [label = "[0,0] A"];
+    root10_13 -> node2511310_13 [label = "[1,9] BRACADABR"];
+    root10_13 -> node2241310_13 [label = "[4,9] CADABR"];
+    root10_13 -> node2061310_13 [label = "[6,9] DABR"];
+    root10_13 -> node2421310_13 [label = "[2,9] RACADABR"];
+    node10010_13 -> node1311310_13 [label = "[1,9] BRACADABR" color=red];
+    node10010_13 -> node1041310_13 [label = "[4,9] CADABR"];
+    node10010_13 -> node861310_13 [label = "[6,9] DABR"];
+
+    node861310_13 [ shape=point ]
+    node1041310_13 [ shape=point ]
+    node10010_13 [width=0.15 fillcolor=red]
+    root10_13 [ width=0.15 ]
+    node2511310_13 [ shape=point ]
+    node2061310_13 [ shape=point ]
+    node1311310_13 [ shape=point ]
+    node2241310_13 [ shape=point ]
+    node2421310_13 [ shape=point ]
+  }
+
+  subgraph cluster_11 {
+    label="Step 11: S[10]=A, AP=(node100,'B',3), remainder=4"
+
+    root11_14 -> node10011_14 [label = "[0,0] A"];
+    root11_14 -> node2511311_14 [label = "[1,10] BRACADABRA"];
+    root11_14 -> node2241311_14 [label = "[4,10] CADABRA"];
+    root11_14 -> node2061311_14 [label = "[6,10] DABRA"];
+    root11_14 -> node2421311_14 [label = "[2,10] RACADABRA"];
+    node10011_14 -> node1311311_14 [label = "[1,10] BRACADABRA" color=red];
+    node10011_14 -> node1041311_14 [label = "[4,10] CADABRA"];
+    node10011_14 -> node861311_14 [label = "[6,10] DABRA"];
+
+    node861311_14 [ shape=point ]
+    node1041311_14 [ shape=point ]
+    node10011_14 [width=0.15 fillcolor=red]
+    root11_14 [ width=0.15 ]
+    node2511311_14 [ shape=point ]
+    node2061311_14 [ shape=point ]
+    node1311311_14 [ shape=point ]
+    node2241311_14 [ shape=point ]
+    node2421311_14 [ shape=point ]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=!, AP=(node100,'B',3), remainder=4"
+
+    root12_15 -> node10012_15 [label = "[0,0] A"];
+    root12_15 -> node2511312_15 [label = "[1,11] BRACADABRA!"];
+    root12_15 -> node2241312_15 [label = "[4,11] CADABRA!"];
+    root12_15 -> node2061312_15 [label = "[6,11] DABRA!"];
+    root12_15 -> node2421312_15 [label = "[2,11] RACADABRA!"];
+    node10012_15 -> node41312_15 [label = "[1,3] BRA" color=blue];
+    node10012_15 -> node1041312_15 [label = "[4,11] CADABRA!"];
+    node10012_15 -> node861312_15 [label = "[6,11] DABRA!"];
+    node41312_15 -> node6111312_15 [label = "[11,11] !" color=blue];
+    node41312_15 -> node1341312_15 [label = "[4,11] CADABRA!" color=blue];
+
+    node861312_15 [ shape=point ]
+    node1341312_15 [ shape=point ]
+    node1041312_15 [ shape=point ]
+    node10012_15 [width=0.15 fillcolor=red]
+    root12_15 [ width=0.15 ]
+    node2511312_15 [ shape=point ]
+    node6111312_15 [ shape=point ]
+    node2061312_15 [ shape=point ]
+    node2241312_15 [ shape=point ]
+    node2421312_15 [ shape=point ]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=!, AP=(root,'B',3), remainder=3"
+
+    root12_16 -> node10012_16 [label = "[0,0] A"];
+    root12_16 -> node31312_16 [label = "[1,3] BRA" color=blue];
+    root12_16 -> node2241312_16 [label = "[4,11] CADABRA!"];
+    root12_16 -> node2061312_16 [label = "[6,11] DABRA!"];
+    root12_16 -> node2421312_16 [label = "[2,11] RACADABRA!"];
+    node10012_16 -> node41312_16 [label = "[1,3] BRA"];
+    node41312_16 -> node31312_16 [ style=dotted ];
+    node10012_16 -> node1041312_16 [label = "[4,11] CADABRA!"];
+    node10012_16 -> node861312_16 [label = "[6,11] DABRA!"];
+    node31312_16 -> node5111312_16 [label = "[11,11] !" color=blue];
+    node31312_16 -> node1241312_16 [label = "[4,11] CADABRA!" color=blue];
+    node41312_16 -> node6111312_16 [label = "[11,11] !"];
+    node41312_16 -> node1341312_16 [label = "[4,11] CADABRA!"];
+
+    node861312_16 [ shape=point ]
+    node1241312_16 [ shape=point ]
+    node2241312_16 [ shape=point ]
+    node1341312_16 [ shape=point ]
+    node1041312_16 [ shape=point ]
+    root12_16 [ width=0.15  fillcolor=red ]
+    node6111312_16 [ shape=point ]
+    node2061312_16 [ shape=point ]
+    node5111312_16 [ shape=point ]
+    node2421312_16 [ shape=point ]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=!, AP=(root,'R',2), remainder=2"
+
+    root12_17 -> node10012_17 [label = "[0,0] A"];
+    root12_17 -> node31312_17 [label = "[1,3] BRA"];
+    node31312_17 -> node22312_17 [ style=dotted ];
+    root12_17 -> node2241312_17 [label = "[4,11] CADABRA!"];
+    root12_17 -> node2061312_17 [label = "[6,11] DABRA!"];
+    root12_17 -> node22312_17 [label = "[2,3] RA" color=blue];
+    node10012_17 -> node41312_17 [label = "[1,3] BRA"];
+    node41312_17 -> node31312_17 [ style=dotted ];
+    node10012_17 -> node1041312_17 [label = "[4,11] CADABRA!"];
+    node10012_17 -> node861312_17 [label = "[6,11] DABRA!"];
+    node31312_17 -> node5111312_17 [label = "[11,11] !"];
+    node31312_17 -> node1241312_17 [label = "[4,11] CADABRA!"];
+    node22312_17 -> node4111312_17 [label = "[11,11] !" color=blue];
+    node22312_17 -> node1141312_17 [label = "[4,11] CADABRA!" color=blue];
+    node41312_17 -> node6111312_17 [label = "[11,11] !"];
+    node41312_17 -> node1341312_17 [label = "[4,11] CADABRA!"];
+
+    node861312_17 [ shape=point ]
+    node1141312_17 [ shape=point ]
+    node1241312_17 [ shape=point ]
+    node2241312_17 [ shape=point ]
+    node4111312_17 [ shape=point ]
+    node1341312_17 [ shape=point ]
+    node1041312_17 [ shape=point ]
+    root12_17 [ width=0.15  fillcolor=red ]
+    node6111312_17 [ shape=point ]
+    node2061312_17 [ shape=point ]
+    node5111312_17 [ shape=point ]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=!, AP=(node100,'\\0x',0), remainder=1"
+
+    root12_18 -> node10012_18 [label = "[0,0] A"];
+    root12_18 -> node31312_18 [label = "[1,3] BRA"];
+    node31312_18 -> node22312_18 [ style=dotted ];
+    root12_18 -> node2241312_18 [label = "[4,11] CADABRA!"];
+    root12_18 -> node2061312_18 [label = "[6,11] DABRA!"];
+    root12_18 -> node22312_18 [label = "[2,3] RA"];
+    node22312_18 -> node10012_18 [ style=dotted ];
+    node10012_18 -> node3111312_18 [label = "[11,11] !" color=blue];
+    node10012_18 -> node41312_18 [label = "[1,3] BRA"];
+    node41312_18 -> node31312_18 [ style=dotted ];
+    node10012_18 -> node1041312_18 [label = "[4,11] CADABRA!"];
+    node10012_18 -> node861312_18 [label = "[6,11] DABRA!"];
+    node31312_18 -> node5111312_18 [label = "[11,11] !"];
+    node31312_18 -> node1241312_18 [label = "[4,11] CADABRA!"];
+    node22312_18 -> node4111312_18 [label = "[11,11] !"];
+    node22312_18 -> node1141312_18 [label = "[4,11] CADABRA!"];
+    node41312_18 -> node6111312_18 [label = "[11,11] !"];
+    node41312_18 -> node1341312_18 [label = "[4,11] CADABRA!"];
+
+    node861312_18 [ shape=point ]
+    node1141312_18 [ shape=point ]
+    node1241312_18 [ shape=point ]
+    node3111312_18 [ shape=point ]
+    node2241312_18 [ shape=point ]
+    node4111312_18 [ shape=point ]
+    node1341312_18 [ shape=point ]
+    node1041312_18 [ shape=point ]
+    node10012_18 [width=0.15 fillcolor=red]
+    root12_18 [ width=0.15 ]
+    node6111312_18 [ shape=point ]
+    node2061312_18 [ shape=point ]
+    node5111312_18 [ shape=point ]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=!, AP=(root,'\\0x',0), remainder=0"
+
+    root12_19 -> node15111312_19 [label = "[11,11] !" color=blue];
+    root12_19 -> node10012_19 [label = "[0,0] A"];
+    root12_19 -> node31312_19 [label = "[1,3] BRA"];
+    node31312_19 -> node22312_19 [ style=dotted ];
+    root12_19 -> node2241312_19 [label = "[4,11] CADABRA!"];
+    root12_19 -> node2061312_19 [label = "[6,11] DABRA!"];
+    root12_19 -> node22312_19 [label = "[2,3] RA"];
+    node22312_19 -> node10012_19 [ style=dotted ];
+    node10012_19 -> node3111312_19 [label = "[11,11] !"];
+    node10012_19 -> node41312_19 [label = "[1,3] BRA"];
+    node41312_19 -> node31312_19 [ style=dotted ];
+    node10012_19 -> node1041312_19 [label = "[4,11] CADABRA!"];
+    node10012_19 -> node861312_19 [label = "[6,11] DABRA!"];
+    node31312_19 -> node5111312_19 [label = "[11,11] !"];
+    node31312_19 -> node1241312_19 [label = "[4,11] CADABRA!"];
+    node22312_19 -> node4111312_19 [label = "[11,11] !"];
+    node22312_19 -> node1141312_19 [label = "[4,11] CADABRA!"];
+    node41312_19 -> node6111312_19 [label = "[11,11] !"];
+    node41312_19 -> node1341312_19 [label = "[4,11] CADABRA!"];
+
+    node861312_19 [ shape=point ]
+    node1141312_19 [ shape=point ]
+    node1241312_19 [ shape=point ]
+    node3111312_19 [ shape=point ]
+    node2241312_19 [ shape=point ]
+    node15111312_19 [ shape=point ]
+    node4111312_19 [ shape=point ]
+    node1341312_19 [ shape=point ]
+    node1041312_19 [ shape=point ]
+    root12_19 [ width=0.15  fillcolor=red ]
+    node6111312_19 [ shape=point ]
+    node2061312_19 [ shape=point ]
+    node5111312_19 [ shape=point ]
+  }
+
+  subgraph cluster_13 {
+    label="Step 13: S[12]=$, AP=(root,'\\0x',0), remainder=0"
+
+    root13_20 -> node14121313_20 [label = "[12,12] $" color=blue];
+    root13_20 -> node15111313_20 [label = "[11,12] !$"];
+    root13_20 -> node10013_20 [label = "[0,0] A"];
+    root13_20 -> node31313_20 [label = "[1,3] BRA"];
+    node31313_20 -> node22313_20 [ style=dotted ];
+    root13_20 -> node2241313_20 [label = "[4,12] CADABRA!$"];
+    root13_20 -> node2061313_20 [label = "[6,12] DABRA!$"];
+    root13_20 -> node22313_20 [label = "[2,3] RA"];
+    node22313_20 -> node10013_20 [ style=dotted ];
+    node10013_20 -> node3111313_20 [label = "[11,12] !$"];
+    node10013_20 -> node41313_20 [label = "[1,3] BRA"];
+    node41313_20 -> node31313_20 [ style=dotted ];
+    node10013_20 -> node1041313_20 [label = "[4,12] CADABRA!$"];
+    node10013_20 -> node861313_20 [label = "[6,12] DABRA!$"];
+    node31313_20 -> node5111313_20 [label = "[11,12] !$"];
+    node31313_20 -> node1241313_20 [label = "[4,12] CADABRA!$"];
+    node22313_20 -> node4111313_20 [label = "[11,12] !$"];
+    node22313_20 -> node1141313_20 [label = "[4,12] CADABRA!$"];
+    node41313_20 -> node6111313_20 [label = "[11,12] !$"];
+    node41313_20 -> node1341313_20 [label = "[4,12] CADABRA!$"];
+
+    node14121313_20 [ shape=point ]
+    node861313_20 [ shape=point ]
+    node1141313_20 [ shape=point ]
+    node1241313_20 [ shape=point ]
+    node3111313_20 [ shape=point ]
+    node2241313_20 [ shape=point ]
+    node15111313_20 [ shape=point ]
+    node4111313_20 [ shape=point ]
+    node1341313_20 [ shape=point ]
+    node1041313_20 [ shape=point ]
+    root13_20 [ width=0.15  fillcolor=red ]
+    node6111313_20 [ shape=point ]
+    node2061313_20 [ shape=point ]
+    node5111313_20 [ shape=point ]
+  }
+
+}

@@ -24,7 +24,7 @@ public class BinarySearchTreeTest {
     public void testInsertion() {
         BinarySearchTree tree = getTree();
 
-        // single node
+        // single toNode
         tree.add(1);
         assertEquals(Integer.valueOf(1), tree.root.getValue());
         assertEquals(0, tree.getHeight());
@@ -42,13 +42,13 @@ public class BinarySearchTreeTest {
     public void testDeletion() {
         BinarySearchTree tree = getTree();
 
-        // delete the only tree node
+        // delete the only tree toNode
         tree.add(1);
         assertRemove(tree, 1);
         assertEquals(0, tree.getHeight());
         assertEquals("[]", tree.toString());
 
-        // try to delete an not existent node
+        // try to delete an not existent toNode
         assertNull(tree.remove(2));
 
         /*

@@ -106,7 +106,7 @@ public class AvlTree extends BinarySearchTree {
     }
 
     /**
-     * Right node rotation, taken from https://en.wikipedia.org/wiki/Tree_rotation#Illustration
+     * Right toNode rotation, taken from https://en.wikipedia.org/wiki/Tree_rotation#Illustration
      * @param node
      */
     private void rotateRight(TreeNode node) {

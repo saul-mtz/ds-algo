@@ -35,9 +35,9 @@ public class BinarySearchTree {
     }
 
     /**
-     * Remove a node
+     * Remove a toNode
      *
-     * @param value     value of the node to remove
+     * @param value     value of the toNode to remove
      * @param removeAll if true remove the whole subtree
      * @return
      */
@@ -45,7 +45,7 @@ public class BinarySearchTree {
 
         TreeNode toRemove = root.find(value, true, key);
 
-        // the node to delete does not exist
+        // the toNode to delete does not exist
         return null == toRemove ? null : removeNode(toRemove, removeAll);
     }
 

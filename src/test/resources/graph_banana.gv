@@ -1,0 +1,166 @@
+digraph suffixTree {
+  labelloc="t";
+  label="Suffix Tree for \"banana$\"";
+  rankdir=LR;
+  size="8,5"
+  node [margin=0 fontcolor=blue fontsize=1 width=0.1 shape=circle style=filled];
+
+  subgraph cluster_1 {
+    label="Step 1: S[0]=b, AP=(root,'\\0x',0), remainder=0"
+
+    root1_0 -> node14071_0 [label = "[0,0] b" color=blue];
+
+    node14071_0 [ shape=point ]
+    root1_0 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_2 {
+    label="Step 2: S[1]=a, AP=(root,'\\0x',0), remainder=0"
+
+    root2_1 -> node13172_1 [label = "[1,1] a" color=blue];
+    root2_1 -> node14072_1 [label = "[0,1] ba"];
+
+    node14072_1 [ shape=point ]
+    node13172_1 [ shape=point ]
+    root2_1 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_3 {
+    label="Step 3: S[2]=n, AP=(root,'\\0x',0), remainder=0"
+
+    root3_2 -> node13173_2 [label = "[1,2] an"];
+    root3_2 -> node14073_2 [label = "[0,2] ban"];
+    root3_2 -> node12273_2 [label = "[2,2] n" color=blue];
+
+    node14073_2 [ shape=point ]
+    node13173_2 [ shape=point ]
+    node12273_2 [ shape=point ]
+    root3_2 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_4 {
+    label="Step 4: S[3]=a, AP=(root,'a',1), remainder=1"
+
+    root4_3 -> node13174_3 [label = "[1,3] ana" color=red];
+    root4_3 -> node14074_3 [label = "[0,3] bana"];
+    root4_3 -> node12274_3 [label = "[2,3] na"];
+
+    node14074_3 [ shape=point ]
+    node13174_3 [ shape=point ]
+    node12274_3 [ shape=point ]
+    root4_3 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_5 {
+    label="Step 5: S[4]=n, AP=(root,'a',2), remainder=2"
+
+    root5_4 -> node13175_4 [label = "[1,4] anan" color=red];
+    root5_4 -> node14075_4 [label = "[0,4] banan"];
+    root5_4 -> node12275_4 [label = "[2,4] nan"];
+
+    node14075_4 [ shape=point ]
+    node13175_4 [ shape=point ]
+    node12275_4 [ shape=point ]
+    root5_4 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_6 {
+    label="Step 6: S[5]=a, AP=(root,'a',3), remainder=3"
+
+    root6_5 -> node13176_5 [label = "[1,5] anana" color=red];
+    root6_5 -> node14076_5 [label = "[0,5] banana"];
+    root6_5 -> node12276_5 [label = "[2,5] nana"];
+
+    node14076_5 [ shape=point ]
+    node13176_5 [ shape=point ]
+    node12276_5 [ shape=point ]
+    root6_5 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=$, AP=(root,'a',3), remainder=3"
+
+    root7_6 -> node3137_6 [label = "[1,3] ana" color=blue];
+    root7_6 -> node14077_6 [label = "[0,6] banana$"];
+    root7_6 -> node12277_6 [label = "[2,6] nana$"];
+    node3137_6 -> node4677_6 [label = "[6,6] $" color=blue];
+    node3137_6 -> node6477_6 [label = "[4,6] na$" color=blue];
+
+    node14077_6 [ shape=point ]
+    node12277_6 [ shape=point ]
+    node6477_6 [ shape=point ]
+    root7_6 [ width=0.15  fillcolor=red ]
+    node4677_6 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=$, AP=(root,'n',2), remainder=2"
+
+    root7_7 -> node3137_7 [label = "[1,3] ana"];
+    node3137_7 -> node2237_7 [ style=dotted ];
+    root7_7 -> node14077_7 [label = "[0,6] banana$"];
+    root7_7 -> node2237_7 [label = "[2,3] na" color=blue];
+    node3137_7 -> node4677_7 [label = "[6,6] $"];
+    node3137_7 -> node6477_7 [label = "[4,6] na$"];
+    node2237_7 -> node3677_7 [label = "[6,6] $" color=blue];
+    node2237_7 -> node5477_7 [label = "[4,6] na$" color=blue];
+
+    node5477_7 [ shape=point ]
+    node14077_7 [ shape=point ]
+    node6477_7 [ shape=point ]
+    root7_7 [ width=0.15  fillcolor=red ]
+    node4677_7 [ shape=point ]
+    node3677_7 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=$, AP=(root,'a',1), remainder=1"
+
+    root7_8 -> node1117_8 [label = "[1,1] a" color=blue];
+    root7_8 -> node14077_8 [label = "[0,6] banana$"];
+    root7_8 -> node2237_8 [label = "[2,3] na"];
+    node2237_8 -> node1117_8 [ style=dotted ];
+    node1117_8 -> node2677_8 [label = "[6,6] $" color=blue];
+    node1117_8 -> node3237_8 [label = "[2,3] na" color=blue];
+    node3237_8 -> node2237_8 [ style=dotted ];
+    node2237_8 -> node3677_8 [label = "[6,6] $"];
+    node2237_8 -> node5477_8 [label = "[4,6] na$"];
+    node3237_8 -> node4677_8 [label = "[6,6] $"];
+    node3237_8 -> node6477_8 [label = "[4,6] na$"];
+
+    node5477_8 [ shape=point ]
+    node14077_8 [ shape=point ]
+    node6477_8 [ shape=point ]
+    root7_8 [ width=0.15  fillcolor=red ]
+    node4677_8 [ shape=point ]
+    node3677_8 [ shape=point ]
+    node2677_8 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=$, AP=(root,'$',0), remainder=0"
+
+    root7_9 -> node8677_9 [label = "[6,6] $" color=blue];
+    root7_9 -> node1117_9 [label = "[1,1] a"];
+    root7_9 -> node14077_9 [label = "[0,6] banana$"];
+    root7_9 -> node2237_9 [label = "[2,3] na"];
+    node2237_9 -> node1117_9 [ style=dotted ];
+    node1117_9 -> node2677_9 [label = "[6,6] $"];
+    node1117_9 -> node3237_9 [label = "[2,3] na"];
+    node3237_9 -> node2237_9 [ style=dotted ];
+    node2237_9 -> node3677_9 [label = "[6,6] $"];
+    node2237_9 -> node5477_9 [label = "[4,6] na$"];
+    node3237_9 -> node4677_9 [label = "[6,6] $"];
+    node3237_9 -> node6477_9 [label = "[4,6] na$"];
+
+    node5477_9 [ shape=point ]
+    node14077_9 [ shape=point ]
+    node8677_9 [ shape=point ]
+    node6477_9 [ shape=point ]
+    root7_9 [ width=0.15  fillcolor=red ]
+    node4677_9 [ shape=point ]
+    node3677_9 [ shape=point ]
+    node2677_9 [ shape=point ]
+  }
+
+}

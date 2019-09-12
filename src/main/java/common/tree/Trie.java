@@ -16,17 +16,17 @@ public class Trie {
     // uses a TreeMap because the order is important
     private TreeMap<Character, Trie> children;
 
-    // prefix for the current node
+    // prefix for the current toNode
     private final String prefix;
 
     // size of the subtree, it has the value of all the sub nodes from this one, included
     private int size = 1;
 
-    // true when the current node represents a whole word
+    // true when the current toNode represents a whole word
     private boolean isWord = false;
 
     /**
-     * Default constructor, used for the root node, there is not prefix to keep
+     * Default constructor, used for the root toNode, there is not prefix to keep
      */
     Trie() {
         this.prefix = "";
@@ -34,7 +34,7 @@ public class Trie {
     }
 
     /**
-     * Creates a new node when all the descendants share the same prefix
+     * Creates a new toNode when all the descendants share the same prefix
      * @param prefix
      */
     private Trie(String prefix) {
@@ -42,7 +42,7 @@ public class Trie {
     }
 
     /**
-     * True when the current node is a leaf
+     * True when the current toNode is a leaf
      * @return
      */
     public boolean isEmpty() {
@@ -58,7 +58,7 @@ public class Trie {
     }
 
     /**
-     * Add a word to the current node
+     * Add a word to the current toNode
      *
      * @param str
      */
@@ -78,7 +78,7 @@ public class Trie {
     }
 
     /**
-     * Add a child to the current node
+     * Add a child to the current toNode
      *
      * @param c
      * @return
@@ -94,7 +94,7 @@ public class Trie {
 
 
     /**
-     * Validate if the current node or its descendants indexOf the word given
+     * Validate if the current toNode or its descendants indexOf the word given
      *
      * @param word
      * @return null
@@ -116,7 +116,7 @@ public class Trie {
     }
 
     /**
-     * Checks if the current node has a child with the key 'c'
+     * Checks if the current toNode has a child with the key 'c'
      * @param c
      * @return
      */
@@ -125,7 +125,7 @@ public class Trie {
     }
 
     /**
-     * Validate if the current node or its descendants indexOf the word given
+     * Validate if the current toNode or its descendants indexOf the word given
      *
      * @param prefix
      * @return Trie
@@ -147,7 +147,7 @@ public class Trie {
     }
 
     /**
-     * Get the whole words of the current node
+     * Get the whole words of the current toNode
      *
      * @return
      */

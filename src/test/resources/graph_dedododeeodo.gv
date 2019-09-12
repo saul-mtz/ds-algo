@@ -1,0 +1,662 @@
+digraph suffixTree {
+  labelloc="t";
+  label="Suffix Tree for \"dedododeeodo$\"";
+  rankdir=LR;
+  size="8,5"
+  node [margin=0 fontcolor=blue fontsize=1 width=0.1 shape=circle style=filled];
+
+  subgraph cluster_1 {
+    label="Step 1: S[0]=d, AP=(root,'\\0x',0), remainder=0"
+
+    root1_0 -> node260131_0 [label = "[0,0] d" color=blue];
+
+    node260131_0 [ shape=point ]
+    root1_0 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_2 {
+    label="Step 2: S[1]=e, AP=(root,'\\0x',0), remainder=0"
+
+    root2_1 -> node260132_1 [label = "[0,1] de"];
+    root2_1 -> node251132_1 [label = "[1,1] e" color=blue];
+
+    node260132_1 [ shape=point ]
+    node251132_1 [ shape=point ]
+    root2_1 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_3 {
+    label="Step 3: S[2]=d, AP=(root,'d',1), remainder=1"
+
+    root3_2 -> node260133_2 [label = "[0,2] ded" color=red];
+    root3_2 -> node251133_2 [label = "[1,2] ed"];
+
+    node260133_2 [ shape=point ]
+    node251133_2 [ shape=point ]
+    root3_2 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_4 {
+    label="Step 4: S[3]=o, AP=(root,'d',1), remainder=1"
+
+    root4_3 -> node1004_3 [label = "[0,0] d" color=blue];
+    root4_3 -> node251134_3 [label = "[1,3] edo"];
+    node1004_3 -> node131134_3 [label = "[1,3] edo" color=blue];
+    node1004_3 -> node113134_3 [label = "[3,3] o" color=blue];
+
+    node113134_3 [ shape=point ]
+    node251134_3 [ shape=point ]
+    node131134_3 [ shape=point ]
+    root4_3 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_4 {
+    label="Step 4: S[3]=o, AP=(root,'o',0), remainder=0"
+
+    root4_4 -> node1004_4 [label = "[0,0] d"];
+    root4_4 -> node251134_4 [label = "[1,3] edo"];
+    root4_4 -> node233134_4 [label = "[3,3] o" color=blue];
+    node1004_4 -> node131134_4 [label = "[1,3] edo"];
+    node1004_4 -> node113134_4 [label = "[3,3] o"];
+
+    node113134_4 [ shape=point ]
+    node251134_4 [ shape=point ]
+    node131134_4 [ shape=point ]
+    root4_4 [ width=0.15  fillcolor=red ]
+    node233134_4 [ shape=point ]
+  }
+
+  subgraph cluster_5 {
+    label="Step 5: S[4]=d, AP=(root,'d',1), remainder=1"
+
+    root5_5 -> node1005_5 [label = "[0,0] d" color=red];
+    root5_5 -> node251135_5 [label = "[1,4] edod"];
+    root5_5 -> node233135_5 [label = "[3,4] od"];
+    node1005_5 -> node131135_5 [label = "[1,4] edod"];
+    node1005_5 -> node113135_5 [label = "[3,4] od"];
+
+    node113135_5 [ shape=point ]
+    node251135_5 [ shape=point ]
+    node131135_5 [ shape=point ]
+    root5_5 [ width=0.15  fillcolor=red ]
+    node233135_5 [ shape=point ]
+  }
+
+  subgraph cluster_5 {
+    label="Step 5: S[4]=d, AP=(node100,'\\0x',0), remainder=1"
+
+    root5_6 -> node1005_6 [label = "[0,0] d"];
+    root5_6 -> node251135_6 [label = "[1,4] edod"];
+    root5_6 -> node233135_6 [label = "[3,4] od"];
+    node1005_6 -> node131135_6 [label = "[1,4] edod"];
+    node1005_6 -> node113135_6 [label = "[3,4] od"];
+
+    node1005_6 [width=0.15 fillcolor=red]
+    node113135_6 [ shape=point ]
+    node251135_6 [ shape=point ]
+    node131135_6 [ shape=point ]
+    root5_6 [ width=0.15 ]
+    node233135_6 [ shape=point ]
+  }
+
+  subgraph cluster_6 {
+    label="Step 6: S[5]=o, AP=(node100,'o',1), remainder=2"
+
+    root6_7 -> node1006_7 [label = "[0,0] d"];
+    root6_7 -> node251136_7 [label = "[1,5] edodo"];
+    root6_7 -> node233136_7 [label = "[3,5] odo"];
+    node1006_7 -> node131136_7 [label = "[1,5] edodo"];
+    node1006_7 -> node113136_7 [label = "[3,5] odo" color=red];
+
+    node1006_7 [width=0.15 fillcolor=red]
+    node113136_7 [ shape=point ]
+    node251136_7 [ shape=point ]
+    node131136_7 [ shape=point ]
+    root6_7 [ width=0.15 ]
+    node233136_7 [ shape=point ]
+  }
+
+  subgraph cluster_7 {
+    label="Step 7: S[6]=d, AP=(node100,'o',2), remainder=3"
+
+    root7_8 -> node1007_8 [label = "[0,0] d"];
+    root7_8 -> node251137_8 [label = "[1,6] edodod"];
+    root7_8 -> node233137_8 [label = "[3,6] odod"];
+    node1007_8 -> node131137_8 [label = "[1,6] edodod"];
+    node1007_8 -> node113137_8 [label = "[3,6] odod" color=red];
+
+    node1007_8 [width=0.15 fillcolor=red]
+    node113137_8 [ shape=point ]
+    node251137_8 [ shape=point ]
+    node131137_8 [ shape=point ]
+    root7_8 [ width=0.15 ]
+    node233137_8 [ shape=point ]
+  }
+
+  subgraph cluster_8 {
+    label="Step 8: S[7]=e, AP=(node100,'o',2), remainder=3"
+
+    root8_9 -> node1008_9 [label = "[0,0] d"];
+    root8_9 -> node251138_9 [label = "[1,7] edodode"];
+    root8_9 -> node233138_9 [label = "[3,7] odode"];
+    node1008_9 -> node131138_9 [label = "[1,7] edodode"];
+    node1008_9 -> node3348_9 [label = "[3,4] od" color=blue];
+    node3348_9 -> node97138_9 [label = "[7,7] e" color=blue];
+    node3348_9 -> node115138_9 [label = "[5,7] ode" color=blue];
+
+    node1008_9 [width=0.15 fillcolor=red]
+    node251138_9 [ shape=point ]
+    node131138_9 [ shape=point ]
+    node115138_9 [ shape=point ]
+    root8_9 [ width=0.15 ]
+    node97138_9 [ shape=point ]
+    node233138_9 [ shape=point ]
+  }
+
+  subgraph cluster_8 {
+    label="Step 8: S[7]=e, AP=(root,'o',2), remainder=2"
+
+    root8_10 -> node1008_10 [label = "[0,0] d"];
+    root8_10 -> node251138_10 [label = "[1,7] edodode"];
+    root8_10 -> node2348_10 [label = "[3,4] od" color=blue];
+    node1008_10 -> node131138_10 [label = "[1,7] edodode"];
+    node1008_10 -> node3348_10 [label = "[3,4] od"];
+    node3348_10 -> node2348_10 [ style=dotted ];
+    node2348_10 -> node87138_10 [label = "[7,7] e" color=blue];
+    node2348_10 -> node105138_10 [label = "[5,7] ode" color=blue];
+    node3348_10 -> node97138_10 [label = "[7,7] e"];
+    node3348_10 -> node115138_10 [label = "[5,7] ode"];
+
+    node87138_10 [ shape=point ]
+    node251138_10 [ shape=point ]
+    node105138_10 [ shape=point ]
+    node131138_10 [ shape=point ]
+    node115138_10 [ shape=point ]
+    root8_10 [ width=0.15  fillcolor=red ]
+    node97138_10 [ shape=point ]
+  }
+
+  subgraph cluster_8 {
+    label="Step 8: S[7]=e, AP=(node100,'e',1), remainder=2"
+
+    root8_11 -> node1008_11 [label = "[0,0] d"];
+    root8_11 -> node251138_11 [label = "[1,7] edodode"];
+    root8_11 -> node2348_11 [label = "[3,4] od"];
+    node2348_11 -> node1008_11 [ style=dotted ];
+    node1008_11 -> node131138_11 [label = "[1,7] edodode" color=red];
+    node1008_11 -> node3348_11 [label = "[3,4] od"];
+    node3348_11 -> node2348_11 [ style=dotted ];
+    node2348_11 -> node87138_11 [label = "[7,7] e"];
+    node2348_11 -> node105138_11 [label = "[5,7] ode"];
+    node3348_11 -> node97138_11 [label = "[7,7] e"];
+    node3348_11 -> node115138_11 [label = "[5,7] ode"];
+
+    node1008_11 [width=0.15 fillcolor=red]
+    node87138_11 [ shape=point ]
+    node251138_11 [ shape=point ]
+    node105138_11 [ shape=point ]
+    node131138_11 [ shape=point ]
+    node115138_11 [ shape=point ]
+    root8_11 [ width=0.15 ]
+    node97138_11 [ shape=point ]
+  }
+
+  subgraph cluster_9 {
+    label="Step 9: S[8]=e, AP=(node100,'e',1), remainder=2"
+
+    root9_12 -> node1009_12 [label = "[0,0] d"];
+    root9_12 -> node251139_12 [label = "[1,8] edododee"];
+    root9_12 -> node2349_12 [label = "[3,4] od"];
+    node2349_12 -> node1009_12 [ style=dotted ];
+    node1009_12 -> node2119_12 [label = "[1,1] e" color=blue];
+    node1009_12 -> node3349_12 [label = "[3,4] od"];
+    node3349_12 -> node2349_12 [ style=dotted ];
+    node2349_12 -> node87139_12 [label = "[7,8] ee"];
+    node2349_12 -> node105139_12 [label = "[5,8] odee"];
+    node2119_12 -> node132139_12 [label = "[2,8] dododee" color=blue];
+    node2119_12 -> node78139_12 [label = "[8,8] e" color=blue];
+    node3349_12 -> node97139_12 [label = "[7,8] ee"];
+    node3349_12 -> node115139_12 [label = "[5,8] odee"];
+
+    node1009_12 [width=0.15 fillcolor=red]
+    node87139_12 [ shape=point ]
+    node132139_12 [ shape=point ]
+    node251139_12 [ shape=point ]
+    node105139_12 [ shape=point ]
+    node78139_12 [ shape=point ]
+    node115139_12 [ shape=point ]
+    root9_12 [ width=0.15 ]
+    node97139_12 [ shape=point ]
+  }
+
+  subgraph cluster_9 {
+    label="Step 9: S[8]=e, AP=(root,'e',1), remainder=1"
+
+    root9_13 -> node1009_13 [label = "[0,0] d"];
+    root9_13 -> node1119_13 [label = "[1,1] e" color=blue];
+    root9_13 -> node2349_13 [label = "[3,4] od"];
+    node2349_13 -> node1009_13 [ style=dotted ];
+    node1009_13 -> node2119_13 [label = "[1,1] e"];
+    node2119_13 -> node1119_13 [ style=dotted ];
+    node1009_13 -> node3349_13 [label = "[3,4] od"];
+    node3349_13 -> node2349_13 [ style=dotted ];
+    node1119_13 -> node122139_13 [label = "[2,8] dododee" color=blue];
+    node1119_13 -> node68139_13 [label = "[8,8] e" color=blue];
+    node2349_13 -> node87139_13 [label = "[7,8] ee"];
+    node2349_13 -> node105139_13 [label = "[5,8] odee"];
+    node2119_13 -> node132139_13 [label = "[2,8] dododee"];
+    node2119_13 -> node78139_13 [label = "[8,8] e"];
+    node3349_13 -> node97139_13 [label = "[7,8] ee"];
+    node3349_13 -> node115139_13 [label = "[5,8] odee"];
+
+    node97139_13 [ shape=point ]
+    node68139_13 [ shape=point ]
+    node122139_13 [ shape=point ]
+    node87139_13 [ shape=point ]
+    node132139_13 [ shape=point ]
+    node105139_13 [ shape=point ]
+    node78139_13 [ shape=point ]
+    node115139_13 [ shape=point ]
+    root9_13 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_9 {
+    label="Step 9: S[8]=e, AP=(root,'e',1), remainder=1"
+
+    root9_14 -> node1009_14 [label = "[0,0] d"];
+    root9_14 -> node1119_14 [label = "[1,1] e" color=red];
+    root9_14 -> node2349_14 [label = "[3,4] od"];
+    node2349_14 -> node1009_14 [ style=dotted ];
+    node1009_14 -> node2119_14 [label = "[1,1] e"];
+    node2119_14 -> node1119_14 [ style=dotted ];
+    node1009_14 -> node3349_14 [label = "[3,4] od"];
+    node3349_14 -> node2349_14 [ style=dotted ];
+    node1119_14 -> node122139_14 [label = "[2,8] dododee"];
+    node1119_14 -> node68139_14 [label = "[8,8] e"];
+    node2349_14 -> node87139_14 [label = "[7,8] ee"];
+    node2349_14 -> node105139_14 [label = "[5,8] odee"];
+    node2119_14 -> node132139_14 [label = "[2,8] dododee"];
+    node2119_14 -> node78139_14 [label = "[8,8] e"];
+    node3349_14 -> node97139_14 [label = "[7,8] ee"];
+    node3349_14 -> node115139_14 [label = "[5,8] odee"];
+
+    node97139_14 [ shape=point ]
+    node68139_14 [ shape=point ]
+    node122139_14 [ shape=point ]
+    node87139_14 [ shape=point ]
+    node132139_14 [ shape=point ]
+    node105139_14 [ shape=point ]
+    node78139_14 [ shape=point ]
+    node115139_14 [ shape=point ]
+    root9_14 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_9 {
+    label="Step 9: S[8]=e, AP=(node111,'\\0x',0), remainder=1"
+
+    root9_15 -> node1009_15 [label = "[0,0] d"];
+    root9_15 -> node1119_15 [label = "[1,1] e"];
+    root9_15 -> node2349_15 [label = "[3,4] od"];
+    node2349_15 -> node1009_15 [ style=dotted ];
+    node1009_15 -> node2119_15 [label = "[1,1] e"];
+    node2119_15 -> node1119_15 [ style=dotted ];
+    node1009_15 -> node3349_15 [label = "[3,4] od"];
+    node3349_15 -> node2349_15 [ style=dotted ];
+    node1119_15 -> node122139_15 [label = "[2,8] dododee"];
+    node1119_15 -> node68139_15 [label = "[8,8] e"];
+    node2349_15 -> node87139_15 [label = "[7,8] ee"];
+    node2349_15 -> node105139_15 [label = "[5,8] odee"];
+    node2119_15 -> node132139_15 [label = "[2,8] dododee"];
+    node2119_15 -> node78139_15 [label = "[8,8] e"];
+    node3349_15 -> node97139_15 [label = "[7,8] ee"];
+    node3349_15 -> node115139_15 [label = "[5,8] odee"];
+
+    node1119_15 [width=0.15 fillcolor=red]
+    node97139_15 [ shape=point ]
+    node68139_15 [ shape=point ]
+    node122139_15 [ shape=point ]
+    node87139_15 [ shape=point ]
+    node132139_15 [ shape=point ]
+    node105139_15 [ shape=point ]
+    node78139_15 [ shape=point ]
+    node115139_15 [ shape=point ]
+    root9_15 [ width=0.15 ]
+  }
+
+  subgraph cluster_10 {
+    label="Step 10: S[9]=o, AP=(node111,'\\0x',0), remainder=1"
+
+    root10_16 -> node10010_16 [label = "[0,0] d"];
+    root10_16 -> node11110_16 [label = "[1,1] e"];
+    root10_16 -> node23410_16 [label = "[3,4] od"];
+    node23410_16 -> node10010_16 [ style=dotted ];
+    node10010_16 -> node21110_16 [label = "[1,1] e"];
+    node21110_16 -> node11110_16 [ style=dotted ];
+    node10010_16 -> node33410_16 [label = "[3,4] od"];
+    node33410_16 -> node23410_16 [ style=dotted ];
+    node11110_16 -> node1221310_16 [label = "[2,9] dododeeo"];
+    node11110_16 -> node681310_16 [label = "[8,9] eo"];
+    node11110_16 -> node591310_16 [label = "[9,9] o" color=blue];
+    node23410_16 -> node871310_16 [label = "[7,9] eeo"];
+    node23410_16 -> node1051310_16 [label = "[5,9] odeeo"];
+    node21110_16 -> node1321310_16 [label = "[2,9] dododeeo"];
+    node21110_16 -> node781310_16 [label = "[8,9] eo"];
+    node33410_16 -> node971310_16 [label = "[7,9] eeo"];
+    node33410_16 -> node1151310_16 [label = "[5,9] odeeo"];
+
+    node11110_16 [width=0.15 fillcolor=red]
+    node971310_16 [ shape=point ]
+    node681310_16 [ shape=point ]
+    node591310_16 [ shape=point ]
+    node1221310_16 [ shape=point ]
+    node871310_16 [ shape=point ]
+    node1321310_16 [ shape=point ]
+    node1051310_16 [ shape=point ]
+    node781310_16 [ shape=point ]
+    node1151310_16 [ shape=point ]
+    root10_16 [ width=0.15 ]
+  }
+
+  subgraph cluster_10 {
+    label="Step 10: S[9]=o, AP=(root,'o',1), remainder=1"
+
+    root10_17 -> node10010_17 [label = "[0,0] d"];
+    root10_17 -> node11110_17 [label = "[1,1] e"];
+    root10_17 -> node23410_17 [label = "[3,4] od" color=red];
+    node23410_17 -> node10010_17 [ style=dotted ];
+    node10010_17 -> node21110_17 [label = "[1,1] e"];
+    node21110_17 -> node11110_17 [ style=dotted ];
+    node10010_17 -> node33410_17 [label = "[3,4] od"];
+    node33410_17 -> node23410_17 [ style=dotted ];
+    node11110_17 -> node1221310_17 [label = "[2,9] dododeeo"];
+    node11110_17 -> node681310_17 [label = "[8,9] eo"];
+    node11110_17 -> node591310_17 [label = "[9,9] o"];
+    node23410_17 -> node871310_17 [label = "[7,9] eeo"];
+    node23410_17 -> node1051310_17 [label = "[5,9] odeeo"];
+    node21110_17 -> node1321310_17 [label = "[2,9] dododeeo"];
+    node21110_17 -> node781310_17 [label = "[8,9] eo"];
+    node33410_17 -> node971310_17 [label = "[7,9] eeo"];
+    node33410_17 -> node1151310_17 [label = "[5,9] odeeo"];
+
+    node971310_17 [ shape=point ]
+    node681310_17 [ shape=point ]
+    node591310_17 [ shape=point ]
+    node1221310_17 [ shape=point ]
+    node871310_17 [ shape=point ]
+    node1321310_17 [ shape=point ]
+    node1051310_17 [ shape=point ]
+    node781310_17 [ shape=point ]
+    node1151310_17 [ shape=point ]
+    root10_17 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_11 {
+    label="Step 11: S[10]=d, AP=(root,'o',2), remainder=2"
+
+    root11_18 -> node10011_18 [label = "[0,0] d"];
+    root11_18 -> node11111_18 [label = "[1,1] e"];
+    root11_18 -> node23411_18 [label = "[3,4] od" color=red];
+    node23411_18 -> node10011_18 [ style=dotted ];
+    node10011_18 -> node21111_18 [label = "[1,1] e"];
+    node21111_18 -> node11111_18 [ style=dotted ];
+    node10011_18 -> node33411_18 [label = "[3,4] od"];
+    node33411_18 -> node23411_18 [ style=dotted ];
+    node11111_18 -> node1221311_18 [label = "[2,10] dododeeod"];
+    node11111_18 -> node681311_18 [label = "[8,10] eod"];
+    node11111_18 -> node591311_18 [label = "[9,10] od"];
+    node23411_18 -> node871311_18 [label = "[7,10] eeod"];
+    node23411_18 -> node1051311_18 [label = "[5,10] odeeod"];
+    node21111_18 -> node1321311_18 [label = "[2,10] dododeeod"];
+    node21111_18 -> node781311_18 [label = "[8,10] eod"];
+    node33411_18 -> node971311_18 [label = "[7,10] eeod"];
+    node33411_18 -> node1151311_18 [label = "[5,10] odeeod"];
+
+    node971311_18 [ shape=point ]
+    node681311_18 [ shape=point ]
+    node591311_18 [ shape=point ]
+    node1221311_18 [ shape=point ]
+    node871311_18 [ shape=point ]
+    node1321311_18 [ shape=point ]
+    node1051311_18 [ shape=point ]
+    node781311_18 [ shape=point ]
+    node1151311_18 [ shape=point ]
+    root11_18 [ width=0.15  fillcolor=red ]
+  }
+
+  subgraph cluster_11 {
+    label="Step 11: S[10]=d, AP=(node234,'\\0x',0), remainder=2"
+
+    root11_19 -> node10011_19 [label = "[0,0] d"];
+    root11_19 -> node11111_19 [label = "[1,1] e"];
+    root11_19 -> node23411_19 [label = "[3,4] od"];
+    node23411_19 -> node10011_19 [ style=dotted ];
+    node10011_19 -> node21111_19 [label = "[1,1] e"];
+    node21111_19 -> node11111_19 [ style=dotted ];
+    node10011_19 -> node33411_19 [label = "[3,4] od"];
+    node33411_19 -> node23411_19 [ style=dotted ];
+    node11111_19 -> node1221311_19 [label = "[2,10] dododeeod"];
+    node11111_19 -> node681311_19 [label = "[8,10] eod"];
+    node11111_19 -> node591311_19 [label = "[9,10] od"];
+    node23411_19 -> node871311_19 [label = "[7,10] eeod"];
+    node23411_19 -> node1051311_19 [label = "[5,10] odeeod"];
+    node21111_19 -> node1321311_19 [label = "[2,10] dododeeod"];
+    node21111_19 -> node781311_19 [label = "[8,10] eod"];
+    node33411_19 -> node971311_19 [label = "[7,10] eeod"];
+    node33411_19 -> node1151311_19 [label = "[5,10] odeeod"];
+
+    node971311_19 [ shape=point ]
+    node681311_19 [ shape=point ]
+    node591311_19 [ shape=point ]
+    node1221311_19 [ shape=point ]
+    node871311_19 [ shape=point ]
+    node1321311_19 [ shape=point ]
+    node1051311_19 [ shape=point ]
+    node781311_19 [ shape=point ]
+    node1151311_19 [ shape=point ]
+    root11_19 [ width=0.15 ]
+    node23411_19 [width=0.15 fillcolor=red]
+  }
+
+  subgraph cluster_12 {
+    label="Step 12: S[11]=o, AP=(node234,'o',1), remainder=3"
+
+    root12_20 -> node10012_20 [label = "[0,0] d"];
+    root12_20 -> node11112_20 [label = "[1,1] e"];
+    root12_20 -> node23412_20 [label = "[3,4] od"];
+    node23412_20 -> node10012_20 [ style=dotted ];
+    node10012_20 -> node21112_20 [label = "[1,1] e"];
+    node21112_20 -> node11112_20 [ style=dotted ];
+    node10012_20 -> node33412_20 [label = "[3,4] od"];
+    node33412_20 -> node23412_20 [ style=dotted ];
+    node11112_20 -> node1221312_20 [label = "[2,11] dododeeodo"];
+    node11112_20 -> node681312_20 [label = "[8,11] eodo"];
+    node11112_20 -> node591312_20 [label = "[9,11] odo"];
+    node23412_20 -> node871312_20 [label = "[7,11] eeodo"];
+    node23412_20 -> node1051312_20 [label = "[5,11] odeeodo" color=red];
+    node21112_20 -> node1321312_20 [label = "[2,11] dododeeodo"];
+    node21112_20 -> node781312_20 [label = "[8,11] eodo"];
+    node33412_20 -> node971312_20 [label = "[7,11] eeodo"];
+    node33412_20 -> node1151312_20 [label = "[5,11] odeeodo"];
+
+    node971312_20 [ shape=point ]
+    node681312_20 [ shape=point ]
+    node591312_20 [ shape=point ]
+    node1221312_20 [ shape=point ]
+    node871312_20 [ shape=point ]
+    node1321312_20 [ shape=point ]
+    node1051312_20 [ shape=point ]
+    node781312_20 [ shape=point ]
+    node1151312_20 [ shape=point ]
+    root12_20 [ width=0.15 ]
+    node23412_20 [width=0.15 fillcolor=red]
+  }
+
+  subgraph cluster_13 {
+    label="Step 13: S[12]=$, AP=(node234,'o',1), remainder=3"
+
+    root13_21 -> node10013_21 [label = "[0,0] d"];
+    root13_21 -> node11113_21 [label = "[1,1] e"];
+    root13_21 -> node23413_21 [label = "[3,4] od"];
+    node23413_21 -> node10013_21 [ style=dotted ];
+    node10013_21 -> node21113_21 [label = "[1,1] e"];
+    node21113_21 -> node11113_21 [ style=dotted ];
+    node10013_21 -> node33413_21 [label = "[3,4] od"];
+    node33413_21 -> node23413_21 [ style=dotted ];
+    node11113_21 -> node1221313_21 [label = "[2,12] dododeeodo$"];
+    node11113_21 -> node681313_21 [label = "[8,12] eodo$"];
+    node11113_21 -> node591313_21 [label = "[9,12] odo$"];
+    node23413_21 -> node871313_21 [label = "[7,12] eeodo$"];
+    node23413_21 -> node35513_21 [label = "[5,5] o" color=blue];
+    node21113_21 -> node1321313_21 [label = "[2,12] dododeeodo$"];
+    node21113_21 -> node781313_21 [label = "[8,12] eodo$"];
+    node33413_21 -> node971313_21 [label = "[7,12] eeodo$"];
+    node33413_21 -> node1151313_21 [label = "[5,12] odeeodo$"];
+    node35513_21 -> node4121313_21 [label = "[12,12] $" color=blue];
+    node35513_21 -> node1061313_21 [label = "[6,12] deeodo$" color=blue];
+
+    node1061313_21 [ shape=point ]
+    node971313_21 [ shape=point ]
+    node4121313_21 [ shape=point ]
+    node681313_21 [ shape=point ]
+    node591313_21 [ shape=point ]
+    node1221313_21 [ shape=point ]
+    node871313_21 [ shape=point ]
+    node1321313_21 [ shape=point ]
+    node781313_21 [ shape=point ]
+    node1151313_21 [ shape=point ]
+    root13_21 [ width=0.15 ]
+    node23413_21 [width=0.15 fillcolor=red]
+  }
+
+  subgraph cluster_13 {
+    label="Step 13: S[12]=$, AP=(node100,'o',1), remainder=2"
+
+    root13_22 -> node10013_22 [label = "[0,0] d"];
+    root13_22 -> node11113_22 [label = "[1,1] e"];
+    root13_22 -> node23413_22 [label = "[3,4] od"];
+    node23413_22 -> node10013_22 [ style=dotted ];
+    node10013_22 -> node21113_22 [label = "[1,1] e"];
+    node21113_22 -> node11113_22 [ style=dotted ];
+    node10013_22 -> node23313_22 [label = "[3,3] o" color=blue];
+    node11113_22 -> node1221313_22 [label = "[2,12] dododeeodo$"];
+    node11113_22 -> node681313_22 [label = "[8,12] eodo$"];
+    node11113_22 -> node591313_22 [label = "[9,12] odo$"];
+    node23413_22 -> node871313_22 [label = "[7,12] eeodo$"];
+    node23413_22 -> node35513_22 [label = "[5,5] o"];
+    node35513_22 -> node23313_22 [ style=dotted ];
+    node21113_22 -> node1321313_22 [label = "[2,12] dododeeodo$"];
+    node21113_22 -> node781313_22 [label = "[8,12] eodo$"];
+    node23313_22 -> node3121313_22 [label = "[12,12] $" color=blue];
+    node23313_22 -> node34413_22 [label = "[4,4] d" color=blue];
+    node34413_22 -> node23413_22 [ style=dotted ];
+    node35513_22 -> node4121313_22 [label = "[12,12] $"];
+    node35513_22 -> node1061313_22 [label = "[6,12] deeodo$"];
+    node34413_22 -> node971313_22 [label = "[7,12] eeodo$"];
+    node34413_22 -> node1151313_22 [label = "[5,12] odeeodo$"];
+
+    node10013_22 [width=0.15 fillcolor=red]
+    node1061313_22 [ shape=point ]
+    node4121313_22 [ shape=point ]
+    node971313_22 [ shape=point ]
+    node681313_22 [ shape=point ]
+    node591313_22 [ shape=point ]
+    node1221313_22 [ shape=point ]
+    node871313_22 [ shape=point ]
+    node1321313_22 [ shape=point ]
+    node781313_22 [ shape=point ]
+    node1151313_22 [ shape=point ]
+    root13_22 [ width=0.15 ]
+    node3121313_22 [ shape=point ]
+  }
+
+  subgraph cluster_13 {
+    label="Step 13: S[12]=$, AP=(root,'o',1), remainder=1"
+
+    root13_23 -> node10013_23 [label = "[0,0] d"];
+    root13_23 -> node11113_23 [label = "[1,1] e"];
+    root13_23 -> node13313_23 [label = "[3,3] o" color=blue];
+    node10013_23 -> node21113_23 [label = "[1,1] e"];
+    node21113_23 -> node11113_23 [ style=dotted ];
+    node10013_23 -> node23313_23 [label = "[3,3] o"];
+    node23313_23 -> node13313_23 [ style=dotted ];
+    node11113_23 -> node1221313_23 [label = "[2,12] dododeeodo$"];
+    node11113_23 -> node681313_23 [label = "[8,12] eodo$"];
+    node11113_23 -> node591313_23 [label = "[9,12] odo$"];
+    node13313_23 -> node2121313_23 [label = "[12,12] $" color=blue];
+    node13313_23 -> node24413_23 [label = "[4,4] d" color=blue];
+    node24413_23 -> node10013_23 [ style=dotted ];
+    node21113_23 -> node1321313_23 [label = "[2,12] dododeeodo$"];
+    node21113_23 -> node781313_23 [label = "[8,12] eodo$"];
+    node23313_23 -> node3121313_23 [label = "[12,12] $"];
+    node23313_23 -> node34413_23 [label = "[4,4] d"];
+    node34413_23 -> node24413_23 [ style=dotted ];
+    node24413_23 -> node871313_23 [label = "[7,12] eeodo$"];
+    node24413_23 -> node35513_23 [label = "[5,5] o"];
+    node35513_23 -> node23313_23 [ style=dotted ];
+    node34413_23 -> node971313_23 [label = "[7,12] eeodo$"];
+    node34413_23 -> node1151313_23 [label = "[5,12] odeeodo$"];
+    node35513_23 -> node4121313_23 [label = "[12,12] $"];
+    node35513_23 -> node1061313_23 [label = "[6,12] deeodo$"];
+
+    node1061313_23 [ shape=point ]
+    node971313_23 [ shape=point ]
+    node4121313_23 [ shape=point ]
+    node681313_23 [ shape=point ]
+    node591313_23 [ shape=point ]
+    node2121313_23 [ shape=point ]
+    node1221313_23 [ shape=point ]
+    node1321313_23 [ shape=point ]
+    node871313_23 [ shape=point ]
+    node781313_23 [ shape=point ]
+    node1151313_23 [ shape=point ]
+    root13_23 [ width=0.15  fillcolor=red ]
+    node3121313_23 [ shape=point ]
+  }
+
+  subgraph cluster_13 {
+    label="Step 13: S[12]=$, AP=(root,'$',0), remainder=0"
+
+    root13_24 -> node14121313_24 [label = "[12,12] $" color=blue];
+    root13_24 -> node10013_24 [label = "[0,0] d"];
+    root13_24 -> node11113_24 [label = "[1,1] e"];
+    root13_24 -> node13313_24 [label = "[3,3] o"];
+    node10013_24 -> node21113_24 [label = "[1,1] e"];
+    node21113_24 -> node11113_24 [ style=dotted ];
+    node10013_24 -> node23313_24 [label = "[3,3] o"];
+    node23313_24 -> node13313_24 [ style=dotted ];
+    node11113_24 -> node1221313_24 [label = "[2,12] dododeeodo$"];
+    node11113_24 -> node681313_24 [label = "[8,12] eodo$"];
+    node11113_24 -> node591313_24 [label = "[9,12] odo$"];
+    node13313_24 -> node2121313_24 [label = "[12,12] $"];
+    node13313_24 -> node24413_24 [label = "[4,4] d"];
+    node24413_24 -> node10013_24 [ style=dotted ];
+    node21113_24 -> node1321313_24 [label = "[2,12] dododeeodo$"];
+    node21113_24 -> node781313_24 [label = "[8,12] eodo$"];
+    node23313_24 -> node3121313_24 [label = "[12,12] $"];
+    node23313_24 -> node34413_24 [label = "[4,4] d"];
+    node34413_24 -> node24413_24 [ style=dotted ];
+    node24413_24 -> node871313_24 [label = "[7,12] eeodo$"];
+    node24413_24 -> node35513_24 [label = "[5,5] o"];
+    node35513_24 -> node23313_24 [ style=dotted ];
+    node34413_24 -> node971313_24 [label = "[7,12] eeodo$"];
+    node34413_24 -> node1151313_24 [label = "[5,12] odeeodo$"];
+    node35513_24 -> node4121313_24 [label = "[12,12] $"];
+    node35513_24 -> node1061313_24 [label = "[6,12] deeodo$"];
+
+    node1061313_24 [ shape=point ]
+    node971313_24 [ shape=point ]
+    node4121313_24 [ shape=point ]
+    node681313_24 [ shape=point ]
+    node591313_24 [ shape=point ]
+    node14121313_24 [ shape=point ]
+    node2121313_24 [ shape=point ]
+    node1221313_24 [ shape=point ]
+    node1321313_24 [ shape=point ]
+    node871313_24 [ shape=point ]
+    node781313_24 [ shape=point ]
+    node1151313_24 [ shape=point ]
+    root13_24 [ width=0.15  fillcolor=red ]
+    node3121313_24 [ shape=point ]
+  }
+
+}

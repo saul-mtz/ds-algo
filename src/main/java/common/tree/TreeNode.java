@@ -10,21 +10,21 @@ import java.util.List;
  */
 public class TreeNode {
 
-    // internal index for the node
+    // internal index for the toNode
     private int index;
     public int indexMin;
     public int indexMax;
 
-    // node metadata
-    public boolean isLeaf;      // true if this node is a leaf (has no children)
-    public boolean isLeft;      // true if this node is a left child of another node
-    public boolean isRoot;      // true if this node is the root of a tree
-    private int height;         // height of the node as subtree
+    // toNode metadata
+    public boolean isLeaf;      // true if this toNode is a leaf (has no children)
+    public boolean isLeft;      // true if this toNode is a left child of another toNode
+    public boolean isRoot;      // true if this toNode is the root of a tree
+    private int height;         // height of the toNode as subtree
 
     // data to be saved
     Integer data;
 
-    // node relationships
+    // toNode relationships
     private TreeNode parent;
     private TreeNode left;
     private TreeNode right;
@@ -242,7 +242,7 @@ public class TreeNode {
 
         // three possible cases according to: https://en.wikipedia.org/wiki/Binary_search_tree#Deletion
         if (null == this.getLeft() && null == this.getRight()) {
-            // case 1: node with no children
+            // case 1: toNode with no children
 
             if (!isRoot) {
                 if (isLeft) {
